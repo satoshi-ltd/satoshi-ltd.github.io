@@ -75,3 +75,36 @@ ul {
 main section {
   margin: 2rem 0;
 }
+
+.bottom-links {
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 8px;
+  position: absolute;
+  right: 16px;
+}
+
+.bottom-links a {
+  color: #ebebea;
+  min-width: 200px;
+  text-align: right;
+  text-decoration: none;
+}
+
+.bottom-links a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .bottom-links {
+    flex-direction: row;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .bottom-links a {
+    text-align: center;
+  }
+}
