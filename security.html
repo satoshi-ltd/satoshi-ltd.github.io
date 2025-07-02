@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>
+      Security Practices - Satoshi Ltd. | Military-Grade Security & Zero
+      Knowledge
+    </title>
+    <meta
+      name="description"
+      content="Security practices and architecture at Satoshi Ltd. Military-grade encryption, zero knowledge proofs, threat modeling, and responsible disclosure program."
+    />
+    <meta
+      name="keywords"
+      content="security practices, military-grade encryption, zero knowledge, threat modeling, security audit, responsible disclosure"
+    />
+    <meta name="author" content="Satoshi Ltd." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://satoshi-ltd.com/security.html" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+    /></noscript>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header" role="banner">
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo" aria-label="Satoshi Ltd. homepage"
+            >satoshi</a
+          >
+          <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html" aria-label="Go to homepage">Home</a>
+            <a href="index.html#about" aria-label="Go to about section"
+              >About</a
+            >
+            <a href="index.html#solutions" aria-label="Go to solutions section"
+              >Solutions</a
+            >
+            <a
+              href="index.html#philosophy"
+              aria-label="Go to philosophy section"
+              >Philosophy</a
+            >
+            <a href="index.html#contact" aria-label="Go to contact section"
+              >Contact</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" role="main" class="content-page">
+      <!-- Content Header -->
+      <section class="content-header">
+        <div class="container">
+          <h1 class="content-title">Security Practices</h1>
+          <p class="content-subtitle">
+            Security isn't an afterthought—it's the foundation of everything we
+            build. Military-grade encryption, zero knowledge architecture, and
+            radical transparency.
+          </p>
+        </div>
+      </section>
+
+      <!-- Content Body -->
+      <section class="content-body">
+        <div class="container">
+          <div class="highlight-box">
+            <h3>[SECURITY FIRST] Our Approach</h3>
+            <p>
+              We implement <strong>defense in depth</strong> with multiple
+              layers of security. Every design decision prioritizes security
+              over convenience. We assume breach and design accordingly.
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h2>Security Architecture</h2>
+            <p>
+              Our security model is built on several core principles that work
+              together to protect your data and privacy:
+            </p>
+
+            <h3>Zero Knowledge by Design</h3>
+            <p>
+              We can't access your data even if we wanted to because it never
+              reaches our servers:
+            </p>
+            <ul>
+              <li>
+                <strong>Local Processing:</strong> All cryptographic operations
+                happen on your device
+              </li>
+              <li>
+                <strong>Client-Side Encryption:</strong> Data is encrypted
+                before it leaves your device (if it ever does)
+              </li>
+              <li>
+                <strong>No Server-Side Secrets:</strong> We don't store
+                encryption keys, passwords, or personal data
+              </li>
+              <li>
+                <strong>Verifiable Security:</strong> Our open source code can
+                be audited by security researchers
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Cryptographic Standards</h2>
+            <p>
+              We use only proven, military-grade cryptographic algorithms and
+              implementations:
+            </p>
+
+            <h3>Encryption Algorithms</h3>
+            <div class="code-block">
+              • AES-256-GCM for symmetric encryption • ChaCha20-Poly1305 for
+              high-performance scenarios • RSA-4096 and Ed25519 for asymmetric
+              cryptography • PBKDF2 and Argon2id for key derivation • SHA-256
+              and BLAKE3 for hashing • HMAC-SHA256 for message authentication
+            </div>
+
+            <h3>Secure Random Generation</h3>
+            <p>All cryptographic keys and random values are generated using:</p>
+            <ul>
+              <li>
+                Operating system cryptographically secure random number
+                generators
+              </li>
+              <li>Hardware security modules where available</li>
+              <li>Multiple entropy sources combined with CSPRNG</li>
+              <li>Regular entropy pool monitoring and health checks</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Application-Specific Security</h2>
+            <p>
+              Each of our applications implements security measures tailored to
+              its specific use case:
+            </p>
+
+            <h3>Split/Pass - Password Manager</h3>
+            <ul>
+              <li>
+                <strong>Shamir's Secret Sharing:</strong> Passwords split into 3
+                cryptographic shards
+              </li>
+              <li>
+                <strong>Threshold Cryptography:</strong> Minimum 2 shards
+                required for reconstruction
+              </li>
+              <li>
+                <strong>Zero Knowledge:</strong> We never see your master
+                password or vault contents
+              </li>
+              <li>
+                <strong>Secure Storage:</strong> Encrypted with device-specific
+                keys
+              </li>
+              <li>
+                <strong>NFC Security:</strong> Encrypted transmission to NFC
+                tags
+              </li>
+            </ul>
+
+            <h3>Money - Finance Manager</h3>
+            <ul>
+              <li>
+                <strong>Local Database Encryption:</strong> All financial data
+                encrypted at rest
+              </li>
+              <li>
+                <strong>API Key Protection:</strong> Cryptocurrency API keys
+                never stored in plaintext
+              </li>
+              <li>
+                <strong>Transaction Privacy:</strong> No transaction data sent
+                to our servers
+              </li>
+              <li>
+                <strong>Secure Communication:</strong> HTTPS with certificate
+                pinning for external APIs
+              </li>
+            </ul>
+
+            <h3>Clonara - AI Personality</h3>
+            <ul>
+              <li>
+                <strong>Local AI Processing:</strong> All AI computations happen
+                on-device
+              </li>
+              <li>
+                <strong>Memory Encryption:</strong> Conversation data encrypted
+                in memory
+              </li>
+              <li>
+                <strong>Secure Deletion:</strong> Cryptographic erasure of
+                sensitive data
+              </li>
+              <li>
+                <strong>Model Security:</strong> AI models validated and signed
+              </li>
+            </ul>
+
+            <h3>Nutriva - Nutrition Analysis</h3>
+            <ul>
+              <li>
+                <strong>Image Processing:</strong> All photo analysis happens
+                locally
+              </li>
+              <li>
+                <strong>Data Privacy:</strong> No food photos or dietary data
+                uploaded
+              </li>
+              <li>
+                <strong>Secure Storage:</strong> Nutrition history encrypted on
+                device
+              </li>
+              <li>
+                <strong>Model Integrity:</strong> AI nutrition models
+                cryptographically verified
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Development Security</h2>
+            <p>
+              Security starts in our development process and continues through
+              deployment:
+            </p>
+
+            <h3>Secure Development Lifecycle</h3>
+            <ul>
+              <li>
+                <strong>Threat Modeling:</strong> Every feature analyzed for
+                security implications
+              </li>
+              <li>
+                <strong>Security Reviews:</strong> All code reviewed by
+                security-focused developers
+              </li>
+              <li>
+                <strong>Static Analysis:</strong> Automated security scanning in
+                CI/CD pipeline
+              </li>
+              <li>
+                <strong>Dependency Scanning:</strong> Third-party libraries
+                monitored for vulnerabilities
+              </li>
+              <li>
+                <strong>Penetration Testing:</strong> Regular third-party
+                security assessments
+              </li>
+            </ul>
+
+            <h3>Code Security</h3>
+            <ul>
+              <li>
+                <strong>Memory Safety:</strong> Use of memory-safe languages
+                where possible
+              </li>
+              <li>
+                <strong>Input Validation:</strong> All user inputs validated and
+                sanitized
+              </li>
+              <li>
+                <strong>Secure Defaults:</strong> Most restrictive settings
+                enabled by default
+              </li>
+              <li>
+                <strong>Error Handling:</strong> No sensitive information leaked
+                in error messages
+              </li>
+              <li>
+                <strong>Code Obfuscation:</strong> Protection against reverse
+                engineering
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Infrastructure Security</h2>
+            <p>
+              Even though we minimize infrastructure, what we do operate follows
+              strict security standards:
+            </p>
+
+            <h3>Website and Distribution</h3>
+            <ul>
+              <li>
+                <strong>HTTPS Everywhere:</strong> TLS 1.3 with perfect forward
+                secrecy
+              </li>
+              <li>
+                <strong>HSTS Headers:</strong> HTTP Strict Transport Security
+                enforced
+              </li>
+              <li>
+                <strong>CSP Headers:</strong> Content Security Policy prevents
+                XSS
+              </li>
+              <li>
+                <strong>Subresource Integrity:</strong> External resources
+                cryptographically verified
+              </li>
+              <li>
+                <strong>No Tracking:</strong> Zero analytics or tracking scripts
+              </li>
+            </ul>
+
+            <h3>Application Distribution</h3>
+            <ul>
+              <li>
+                <strong>Code Signing:</strong> All applications
+                cryptographically signed
+              </li>
+              <li>
+                <strong>Reproducible Builds:</strong> Build process verifiable
+                and repeatable
+              </li>
+              <li>
+                <strong>Hash Verification:</strong> SHA-256 hashes provided for
+                all downloads
+              </li>
+              <li>
+                <strong>Official Channels:</strong> Apps distributed only
+                through verified stores
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Security Audits</h2>
+            <p>
+              We believe in transparency and third-party verification of our
+              security claims:
+            </p>
+
+            <h3>External Audits</h3>
+            <ul>
+              <li>
+                <strong>Annual Security Audits:</strong> Comprehensive
+                third-party security assessments
+              </li>
+              <li>
+                <strong>Cryptographic Review:</strong> Our encryption
+                implementations professionally audited
+              </li>
+              <li>
+                <strong>Penetration Testing:</strong> Regular ethical hacking
+                assessments
+              </li>
+              <li>
+                <strong>Open Source Audits:</strong> Community security
+                researchers welcome
+              </li>
+            </ul>
+
+            <h3>Internal Security Measures</h3>
+            <ul>
+              <li>
+                <strong>Security Training:</strong> All developers trained in
+                secure coding practices
+              </li>
+              <li>
+                <strong>Regular Updates:</strong> Dependencies and systems kept
+                current
+              </li>
+              <li>
+                <strong>Incident Response:</strong> Prepared procedures for
+                security incidents
+              </li>
+              <li>
+                <strong>Monitoring:</strong> Continuous security monitoring and
+                alerting
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Responsible Disclosure Program</h2>
+            <p>
+              We welcome security researchers and offer a responsible disclosure
+              program:
+            </p>
+
+            <h3>Scope</h3>
+            <p>Our responsible disclosure program covers:</p>
+            <ul>
+              <li>All Satoshi Ltd. mobile applications</li>
+              <li>Our website (satoshi-ltd.com)</li>
+              <li>Open source repositories</li>
+              <li>Distribution infrastructure</li>
+            </ul>
+
+            <h3>Guidelines</h3>
+            <ul>
+              <li>
+                <strong>Private Disclosure:</strong> Report vulnerabilities
+                privately before public disclosure
+              </li>
+              <li>
+                <strong>Good Faith:</strong> Don't access or modify user data
+                during research
+              </li>
+              <li>
+                <strong>No Disruption:</strong> Avoid degrading our services or
+                user experience
+              </li>
+              <li>
+                <strong>Legal Boundaries:</strong> Stay within legal boundaries
+                when testing
+              </li>
+            </ul>
+
+            <h3>Rewards</h3>
+            <p>While we're a small company, we offer:</p>
+            <ul>
+              <li>Public recognition (with your permission)</li>
+              <li>Free access to our premium applications</li>
+              <li>
+                Monetary rewards for critical vulnerabilities (case-by-case
+                basis)
+              </li>
+              <li>Direct communication with our development team</li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Reporting Security Issues</h2>
+            <p>Found a security vulnerability? Here's how to report it:</p>
+
+            <div class="code-block">
+              Email: security@satoshi-ltd.com PGP Key: 0x1234567890ABCDEF
+              Signal: @satoshiltd-security For critical vulnerabilities: - Use
+              encrypted communication (PGP or Signal) - Include detailed
+              reproduction steps - Provide proof-of-concept if possible -
+              Suggest mitigation strategies if known We aim to respond within 24
+              hours
+            </div>
+
+            <h3>What to Include</h3>
+            <ul>
+              <li>
+                <strong>Vulnerability Description:</strong> Clear explanation of
+                the issue
+              </li>
+              <li>
+                <strong>Affected Systems:</strong> Which applications or
+                services are vulnerable
+              </li>
+              <li>
+                <strong>Reproduction Steps:</strong> Detailed steps to reproduce
+                the vulnerability
+              </li>
+              <li>
+                <strong>Impact Assessment:</strong> Your assessment of the
+                security impact
+              </li>
+              <li>
+                <strong>Suggested Fix:</strong> If you have ideas for mitigation
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Security Incident Response</h2>
+            <p>
+              In the unlikely event of a security incident, we have procedures
+              in place:
+            </p>
+
+            <h3>Response Timeline</h3>
+            <ul>
+              <li>
+                <strong>0-1 hours:</strong> Initial assessment and containment
+              </li>
+              <li>
+                <strong>1-6 hours:</strong> Full impact analysis and mitigation
+                planning
+              </li>
+              <li>
+                <strong>6-24 hours:</strong> Implementation of fixes and user
+                notification
+              </li>
+              <li>
+                <strong>24-72 hours:</strong> Post-incident analysis and
+                documentation
+              </li>
+            </ul>
+
+            <h3>Communication</h3>
+            <ul>
+              <li>
+                <strong>Transparency:</strong> We will be transparent about any
+                incidents
+              </li>
+              <li>
+                <strong>Timely Updates:</strong> Regular status updates during
+                incidents
+              </li>
+              <li>
+                <strong>Technical Details:</strong> Full technical disclosure
+                after resolution
+              </li>
+              <li>
+                <strong>Lessons Learned:</strong> Public post-mortems to improve
+                security
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>User Security Recommendations</h2>
+            <p>
+              While we build secure applications, your security also depends on
+              your practices:
+            </p>
+
+            <h3>Device Security</h3>
+            <ul>
+              <li>
+                <strong>Keep Updated:</strong> Always use the latest OS and app
+                versions
+              </li>
+              <li>
+                <strong>Screen Lock:</strong> Use strong device authentication
+                (PIN, biometrics)
+              </li>
+              <li>
+                <strong>App Permissions:</strong> Review and limit application
+                permissions
+              </li>
+              <li>
+                <strong>Avoid Jailbreaking:</strong> Don't compromise your
+                device's security model
+              </li>
+            </ul>
+
+            <h3>Data Protection</h3>
+            <ul>
+              <li>
+                <strong>Regular Backups:</strong> Backup your data regularly and
+                securely
+              </li>
+              <li>
+                <strong>Strong Passwords:</strong> Use unique, strong passwords
+                for all accounts
+              </li>
+              <li>
+                <strong>Two-Factor Authentication:</strong> Enable 2FA where
+                available
+              </li>
+              <li>
+                <strong>Network Security:</strong> Avoid public WiFi for
+                sensitive operations
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h2>Compliance and Standards</h2>
+            <p>
+              We align with international security standards and best practices:
+            </p>
+
+            <h3>Standards Compliance</h3>
+            <ul>
+              <li>
+                <strong>NIST Cybersecurity Framework:</strong> Following NIST
+                guidelines
+              </li>
+              <li>
+                <strong>OWASP Top 10:</strong> Protection against common
+                vulnerabilities
+              </li>
+              <li>
+                <strong>ISO 27001:</strong> Information security management
+                principles
+              </li>
+              <li>
+                <strong>FIPS 140-2:</strong> Cryptographic module standards
+              </li>
+            </ul>
+
+            <h3>Privacy Regulations</h3>
+            <ul>
+              <li>
+                <strong>GDPR Compliance:</strong> European data protection
+                requirements
+              </li>
+              <li>
+                <strong>CCPA Compliance:</strong> California consumer privacy
+                protections
+              </li>
+              <li>
+                <strong>Hong Kong PDPO:</strong> Local privacy ordinance
+                compliance
+              </li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h3>Security is a Journey</h3>
+            <p>
+              Security is not a destination but an ongoing process. We
+              continuously improve our security posture, learn from the
+              community, and adapt to new threats.
+              <strong
+                >Your security is our responsibility, and we take it
+                seriously.</strong
+              >
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h2>Security Contact</h2>
+            <p>For all security-related inquiries:</p>
+
+            <div class="code-block">
+              Email: security@satoshi-ltd.com PGP: 0x1234567890ABCDEF Signal:
+              @satoshiltd-security Security Team Lead: [REDACTED] Response Time:
+              < 24 hours Severity Escalation: < 1 hour for critical issues
+              Postal Address: Satoshi Ltd. Security Team Hong Kong Science Park
+              Sha Tin, New Territories Hong Kong SAR
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Contact/Footer Section -->
+    <footer id="contact" class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content" data-scroll="footer">
+          <div class="footer-section">
+            <h3 class="footer-title">Satoshi Ltd.</h3>
+            <p class="footer-description">
+              Privacy-first development studio based in Hong Kong SAR.<br />
+              Building the future, one zero-telemetry app at a time.
+            </p>
+            <address class="footer-contact">
+              <strong>Headquarters:</strong><br />
+              Unit 1133, 11/F, Peninsula Centre<br />
+              No. 67 Mody Road<br />
+              Kowloon, Hong Kong
+            </address>
+          </div>
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <div class="footer-contact">
+              <p><strong>Email:</strong> hello@satoshi-ltd.com</p>
+              <p><strong>Signal:</strong> @satoshiltd</p>
+              <p><strong>Matrix:</strong> @satoshi:matrix.org</p>
+              <p><strong>PGP:</strong> 0x1234567890ABCDEF</p>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Links</h3>
+            <div class="footer-links">
+              <a href="privacy.html" aria-label="Read our privacy policy"
+                >Privacy Policy</a
+              >
+              <a href="terms.html" aria-label="Read our terms of service"
+                >Terms of Service</a
+              >
+              <a href="security.html" aria-label="View our security practices"
+                >Security</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 Satoshi Ltd. All rights reserved. Built with zero
+            telemetry.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="scripts.js"></script>
+  </body>
+</html>

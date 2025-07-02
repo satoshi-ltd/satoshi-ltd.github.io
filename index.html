@@ -1,21 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>SATOSHI LIMITED</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>
+      Satoshi Ltd. - Privacy-First Mobile App Development | Zero Telemetry Apps
+    </title>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1"
+      name="description"
+      content="Satoshi Ltd. develops privacy-first mobile applications with zero telemetry. Based in Hong Kong, we create secure, open-source apps that respect your digital sovereignty. Clonara, Split/Pass, Money, Nutriva."
     />
-    <link rel="shortcut icon" href="./assets/satoshi-ltd.png" />
-    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <meta
+      name="keywords"
+      content="privacy apps, zero telemetry, mobile development, cypherpunk, Hong Kong, digital sovereignty, secure apps, open source, cryptocurrency, password manager"
+    />
+    <meta name="author" content="Satoshi Ltd." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://satoshi-ltd.com" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://satoshi-ltd.com" />
+    <meta
+      property="og:title"
+      content="Satoshi Ltd. - Privacy-First Mobile App Development"
+    />
+    <meta
+      property="og:description"
+      content="We develop mobile applications with zero telemetry that respect your digital sovereignty. Code is Freedom. Privacy is Power."
+    />
+    <meta property="og:image" content="https://satoshi-ltd.com/og-image.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Satoshi Ltd." />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://satoshi-ltd.com" />
+    <meta
+      property="twitter:title"
+      content="Satoshi Ltd. - Privacy-First Mobile App Development"
+    />
+    <meta
+      property="twitter:description"
+      content="We develop mobile applications with zero telemetry that respect your digital sovereignty. Code is Freedom. Privacy is Power."
+    />
+    <meta
+      property="twitter:image"
+      content="https://satoshi-ltd.com/og-image.png"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+    /></noscript>
+
+    <!-- Particles.js -->
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
+      as="script"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
+      defer
+    ></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Satoshi Ltd.",
+        "description": "Privacy-first mobile application development company specializing in zero telemetry apps",
+        "url": "https://satoshi-ltd.com",
+        "logo": "https://satoshi-ltd.com/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hong Kong",
+          "addressRegion": "Hong Kong SAR",
+          "addressCountry": "HK"
+        },
+        "foundingDate": "2024",
+        "industry": "Software Development",
+        "specialties": [
+          "Privacy-first development",
+          "Zero telemetry applications",
+          "Digital sovereignty",
+          "Open source software"
+        ],
+        "sameAs": []
+      }
+    </script>
   </head>
   <body>
-    <img src="./assets/satoshi-ltd.png" />
-    <div class="bottom-links">
-      <a href="mailto:info@satoshi-ltd.com">Contact us</a>
-      <a href="./terms-of-use">Terms and Conditions</a>
-      <a href="./privacy-policy">Privacy Policy</a>
+    <!-- Skip to main content link -->
+    <!-- <a href="#main-content" class="skip-link">Skip to main content</a> -->
+
+    <!-- Header -->
+    <header class="header" role="banner">
+      <div class="container">
+        <div class="header-content">
+          <a
+            href="index.html"
+            class="logo"
+            id="logo"
+            aria-label="Satoshi Ltd. homepage"
+            >satoshi</a
+          >
+          <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="#home" aria-label="Go to home section">Home</a>
+            <a href="#about" aria-label="Go to about section">About</a>
+            <a href="#solutions" aria-label="Go to solutions section"
+              >Solutions</a
+            >
+            <a href="#philosophy" aria-label="Go to philosophy section"
+              >Philosophy</a
+            >
+            <a href="#contact" aria-label="Go to contact section">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-rain" aria-hidden="true" role="presentation"></canvas>
+
+    <!-- Matrix Message -->
+    <div
+      id="matrix-message"
+      class="matrix-message"
+      role="dialog"
+      aria-labelledby="matrix-title"
+      aria-hidden="true"
+    >
+      <h3 id="matrix-title">[!] MATRIX MODE ACTIVATED</h3>
+      <p>Welcome to the real world, Neo...</p>
+      <p>[>] <strong>Try hovering over section titles...</strong></p>
+      <p>Type <code>normal()</code> in console to return</p>
     </div>
+
+    <main id="main-content" role="main">
+      <!-- Hero Section -->
+      <section id="home" class="hero" role="banner">
+        <div id="particles-js" aria-hidden="true"></div>
+        <div id="particles-layer-2" aria-hidden="true"></div>
+        <div id="particles-layer-3" aria-hidden="true"></div>
+
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">Code is Freedom.<br />Privacy is Power.</h1>
+            <p class="hero-subtitle">
+              // Zero telemetry. Maximum control. Your data, your rules.
+            </p>
+            <a
+              href="#solutions"
+              class="hero-cta"
+              aria-label="Explore our privacy-first mobile applications"
+              >Enter the Future</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- About Story -->
+      <section id="about" class="story-section" aria-labelledby="about-title">
+        <div class="container">
+          <div class="story-content" data-scroll="story">
+            <div class="story-text">
+              <p class="story-subtitle">// From Hong Kong to the world</p>
+              <h2 id="about-title" class="story-title">
+                We <span id="action-word">build</span>
+                <span id="product-word">applications</span> that respect your
+                digital sovereignty.
+              </h2>
+              <p class="story-description">
+                At Satoshi Ltd., we believe that true technological revolution
+                begins when users regain total control of their data. Inspired
+                by the cypherpunk principles of the 90s, we develop mobile
+                applications that work entirely on your device.
+                <br /><br />
+                We don't collect. We don't track. We don't sell. Your
+                information stays where it belongs: with you. Every line of code
+                we write prioritizes your privacy, security, and digital
+                autonomy.
+              </p>
+            </div>
+            <div class="story-visual">
+              <div
+                class="solution-visual"
+                style="margin: 0 auto"
+                aria-hidden="true"
+              >
+                [>]
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solutions Showcase -->
+      <section
+        id="solutions"
+        class="solutions-showcase"
+        aria-labelledby="solutions-title"
+      >
+        <div class="container">
+          <h2 id="solutions-title" class="showcase-title">Our Solutions</h2>
+
+          <div class="solution-item" data-scroll="solution">
+            <div class="solution-content">
+              <div>
+                <div class="solution-visual" aria-hidden="true">C</div>
+                <h3 class="solution-name">Clonara</h3>
+                <p class="solution-description">
+                  Ethical alternative to personality cloning. Create
+                  conversational avatars while always maintaining your authority
+                  and total control over the generated AI. Zero data uploading,
+                  complete local processing.
+                </p>
+              </div>
+              <div></div>
+            </div>
+          </div>
+
+          <div class="solution-item" data-scroll="solution">
+            <div class="solution-content">
+              <div></div>
+              <div>
+                <div class="solution-visual" aria-hidden="true">S</div>
+                <h3 class="solution-name">Split/Pass</h3>
+                <p class="solution-description">
+                  Advanced secret splitting system using Shamir's cryptographic
+                  algorithms. Split your passwords into 3 shards, requires
+                  minimum 2 to reconstruct. Compatible with QR codes and NFC.
+                  Military-grade security.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-item" data-scroll="solution">
+            <div class="solution-content">
+              <div>
+                <div class="solution-visual" aria-hidden="true">M</div>
+                <h3 class="solution-name">Money</h3>
+                <p class="solution-description">
+                  Multi-currency and crypto-friendly personal finance manager.
+                  Track Bitcoin, Ethereum, and traditional currencies. Helps you
+                  become aware of your spending patterns and develop intelligent
+                  saving habits.
+                </p>
+              </div>
+              <div></div>
+            </div>
+          </div>
+
+          <div class="solution-item" data-scroll="solution">
+            <div class="solution-content">
+              <div></div>
+              <div>
+                <div class="solution-visual" aria-hidden="true">N</div>
+                <h3 class="solution-name">Nutriva</h3>
+                <p class="solution-description">
+                  Nutritional analysis through photography using local AI
+                  processing. Identifies ingredients, calculates nutritional
+                  values and generates healthier recipe alternatives. All
+                  processing happens on your device.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Philosophy Section -->
+      <section
+        id="philosophy"
+        class="philosophy"
+        aria-labelledby="philosophy-title"
+      >
+        <div class="container">
+          <div class="philosophy-content">
+            <h2 id="philosophy-title" class="philosophy-title">
+              Our Philosophy
+            </h2>
+            <p class="story-description">
+              The principles that guide every line of code we write, rooted in
+              cypherpunk ideals and digital rights.
+            </p>
+
+            <div class="philosophy-grid">
+              <article
+                class="philosophy-item"
+                data-scroll="philosophy"
+                tabindex="0"
+                role="button"
+                aria-label="Learn more about Privacy by Design"
+              >
+                <div class="philosophy-icon" aria-hidden="true">[#]</div>
+                <h3 class="philosophy-name">Privacy by Design</h3>
+                <p
+                  class="philosophy-description"
+                  data-original="Privacy isn't an optional feature, it's the fundamental architecture of every application we build."
+                  data-alt="Zero data collection. Zero tracking. Zero compromise. Your digital life belongs to you alone, not corporations."
+                >
+                  Privacy isn't an optional feature, it's the fundamental
+                  architecture of every application we build.
+                </p>
+              </article>
+              <article
+                class="philosophy-item"
+                data-scroll="philosophy"
+                tabindex="0"
+                role="button"
+                aria-label="Learn more about User Sovereignty"
+              >
+                <div class="philosophy-icon" aria-hidden="true">[*]</div>
+                <h3 class="philosophy-name">User Sovereignty</h3>
+                <p
+                  class="philosophy-description"
+                  data-original="You are the absolute owner of your data, decisions and digital experience."
+                  data-alt="No corporate overlords. No algorithmic manipulation. Pure digital autonomy and self-determination in the digital realm."
+                >
+                  You are the absolute owner of your data, decisions and digital
+                  experience.
+                </p>
+              </article>
+              <article
+                class="philosophy-item"
+                data-scroll="philosophy"
+                tabindex="0"
+                role="button"
+                aria-label="Learn more about Security First"
+              >
+                <div class="philosophy-icon" aria-hidden="true">[+]</div>
+                <h3 class="philosophy-name">Security First</h3>
+                <p
+                  class="philosophy-description"
+                  data-original="We implement security best practices from the very first commit to deployment."
+                  data-alt="Military-grade encryption. Comprehensive threat modeling. Regular penetration testing. Security is never an afterthought."
+                >
+                  We implement security best practices from the very first
+                  commit to deployment.
+                </p>
+              </article>
+              <article
+                class="philosophy-item"
+                data-scroll="philosophy"
+                tabindex="0"
+                role="button"
+                aria-label="Learn more about Open Source"
+              >
+                <div class="philosophy-icon" aria-hidden="true">[~]</div>
+                <h3 class="philosophy-name">Open Source</h3>
+                <p
+                  class="philosophy-description"
+                  data-original="Transparency is fundamental. Our code is open for audit and community review."
+                  data-alt="Trust through verification. Every algorithm exposed. No hidden backdoors, no secret surveillance functions."
+                >
+                  Transparency is fundamental. Our code is open for audit and
+                  community review.
+                </p>
+              </article>
+              <article
+                class="philosophy-item"
+                data-scroll="philosophy"
+                tabindex="0"
+                role="button"
+                aria-label="Learn more about Zero Knowledge"
+              >
+                <div class="philosophy-icon" aria-hidden="true">[&]</div>
+                <h3 class="philosophy-name">Zero Knowledge</h3>
+                <p
+                  class="philosophy-description"
+                  data-original="Advanced cryptographic techniques ensure even we cannot access your sensitive information."
+                  data-alt="Cryptographic proofs without revealing secrets. What we don't know about you can never hurt you."
+                >
+                  Advanced cryptographic techniques ensure even we cannot access
+                  your sensitive information.
+                </p>
+              </article>
+              <article
+                class="philosophy-item"
+                data-scroll="philosophy"
+                tabindex="0"
+                role="button"
+                aria-label="Learn more about Digital Sovereignty"
+              >
+                <div class="philosophy-icon" aria-hidden="true">[%]</div>
+                <h3 class="philosophy-name">Digital Sovereignty</h3>
+                <p
+                  class="philosophy-description"
+                  data-original="Technology should liberate, not enslave. We build tools for digital independence."
+                  data-alt="Break free from Big Tech surveillance capitalism. Reclaim your digital rights. Technology for human liberation."
+                >
+                  Technology should liberate, not enslave. We build tools for
+                  digital independence.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact/Footer Section -->
+      <footer id="contact" class="footer" role="contentinfo">
+        <div class="container">
+          <div class="footer-content" data-scroll="footer">
+            <div class="footer-section">
+              <h3 class="footer-title">Satoshi Ltd.</h3>
+              <p class="footer-description">
+                Privacy-first development studio based in Hong Kong SAR.<br />
+                Building the future, one zero-telemetry app at a time.
+              </p>
+              <address class="footer-contact">
+                <strong>Headquarters:</strong><br />
+                Unit 1133, 11/F, Peninsula Centre<br />
+                No. 67 Mody Road<br />
+                Kowloon, Hong Kong
+              </address>
+            </div>
+            <div class="footer-section">
+              <h3>Contact</h3>
+              <div class="footer-contact">
+                <p><strong>Email:</strong> hello@satoshi-ltd.com</p>
+                <p><strong>Signal:</strong> @satoshiltd</p>
+                <p><strong>Matrix:</strong> @satoshi:matrix.org</p>
+                <p><strong>PGP:</strong> 0x1234567890ABCDEF</p>
+              </div>
+            </div>
+            <div class="footer-section">
+              <h3>Links</h3>
+              <div class="footer-links">
+                <a href="privacy.html" aria-label="Read our privacy policy"
+                  >Privacy Policy</a
+                >
+                <a href="terms.html" aria-label="Read our terms of service"
+                  >Terms of Service</a
+                >
+                <a href="security.html" aria-label="View our security practices"
+                  >Security</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>
+              &copy; 2025 Satoshi Ltd. All rights reserved. Built with zero
+              telemetry.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Main JavaScript -->
+    <script src="scripts.js"></script>
   </body>
 </html>
