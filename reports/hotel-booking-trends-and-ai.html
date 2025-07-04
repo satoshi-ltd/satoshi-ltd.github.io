@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Booking Trends & AI | Satoshi Ltd.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #0a0a0a;
+        color: #ffffff;
+        font-family: "Doto", sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Particles Canvas */
+      #particles-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.6;
+      }
+
+      /* Header */
+      .header {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      }
+
+      .header-content {
+        text-align: center;
+        z-index: 10;
+      }
+
+      .header h1 {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ffc431, #ffdb66);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(255, 196, 49, 0.3);
+      }
+
+      .header .subtitle {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        color: #cccccc;
+        margin-bottom: 2rem;
+        font-weight: 300;
+      }
+
+      .code-comment {
+        color: #888888;
+        font-size: 1rem;
+        font-family: "Courier New", monospace;
+        opacity: 0.8;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ffc431;
+        animation: pulse 2s infinite;
+      }
+
+      .scroll-indicator::before {
+        content: "";
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, transparent, #ffc431);
+        margin-bottom: 10px;
+      }
+
+      /* Main Content Sections */
+      .section {
+        min-height: 100vh;
+        padding: 4rem 2rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s ease-out;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .section h2 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        margin-bottom: 2rem;
+        color: #ffc431;
+        font-weight: 800;
+        text-shadow: 0 0 20px rgba(255, 196, 49, 0.2);
+        position: relative;
+      }
+
+      .section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #ffc431, transparent);
+      }
+
+      .section h3 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin: 2rem 0 1rem 0;
+        color: #ffdb66;
+        font-weight: 700;
+      }
+
+      .section h4 {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        margin: 1.5rem 0 0.8rem 0;
+        color: #ffe599;
+        font-weight: 600;
+      }
+
+      .section p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        color: #e0e0e0;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .stat-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 196, 49, 0.1),
+          rgba(255, 196, 49, 0.05)
+        );
+        border: 1px solid rgba(255, 196, 49, 0.3);
+        padding: 2rem;
+        border-radius: 2px;
+        text-align: center;
+        transition: all 0.5s ease;
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      .stat-card.visible {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .stat-card:hover {
+        transform: scale(1.05);
+        border-color: #ffc431;
+        box-shadow: 0 10px 30px rgba(255, 196, 49, 0.2);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 900;
+        color: #ffc431;
+        display: block;
+        text-shadow: 0 0 15px rgba(255, 196, 49, 0.3);
+      }
+
+      .stat-label {
+        color: #cccccc;
+        margin-top: 0.5rem;
+        font-weight: 400;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        padding-left: 3rem;
+        margin: 3rem 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background: linear-gradient(to bottom, #ffc431, transparent);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        background: rgba(255, 196, 49, 0.05);
+        padding: 2rem;
+        border-radius: 2px;
+        transform: translateX(-50px);
+        opacity: 0;
+        transition: all 0.8s ease;
+      }
+
+      .timeline-item.visible {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -2rem;
+        top: 2rem;
+        width: 12px;
+        height: 12px;
+        background: #ffc431;
+        border: 3px solid #0a0a0a;
+        box-shadow: 0 0 15px rgba(255, 196, 49, 0.5);
+      }
+
+      .timeline-year {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        font-weight: 700;
+        color: #ffc431;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Interactive Chart */
+      .chart-container {
+        background: rgba(255, 196, 49, 0.05);
+        border: 1px solid rgba(255, 196, 49, 0.2);
+        border-radius: 2px;
+        padding: 2rem;
+        margin: 3rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .chart-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 196, 49, 0.1),
+          transparent
+        );
+        animation: scan 3s infinite;
+      }
+
+      .bar-chart {
+        display: flex;
+        align-items: end;
+        gap: 2rem;
+        height: 300px;
+        padding: 3rem 2rem;
+        justify-content: space-around;
+      }
+
+      .bar {
+        background: linear-gradient(to top, #ffc431, #ffdb66);
+        border-radius: 2px 2px 0 0;
+        transition: all 0.5s ease;
+        position: relative;
+        cursor: pointer;
+        flex: 1;
+        max-width: 60px;
+        min-width: 40px;
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      .bar.animate {
+        animation: barGrow 1s ease-out forwards;
+      }
+
+      .bar:hover {
+        filter: brightness(1.2);
+        box-shadow: 0 0 20px rgba(255, 196, 49, 0.4);
+      }
+
+      .bar-label {
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.9rem;
+        color: #cccccc;
+        white-space: nowrap;
+        font-weight: 600;
+        text-align: center;
+        width: 100px;
+      }
+
+      .bar-value {
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1rem;
+        color: #ffc431;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      /* Highlight boxes */
+      .highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 196, 49, 0.1),
+          rgba(255, 196, 49, 0.05)
+        );
+        padding: 2rem;
+        border-radius: 2px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at top right,
+          rgba(255, 196, 49, 0.1),
+          transparent
+        );
+        pointer-events: none;
+      }
+
+      /* List styling */
+      .feature-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .feature-list li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s ease;
+      }
+
+      .feature-list li.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .feature-list li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #ffc431;
+        font-weight: bold;
+      }
+
+      /* Table */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        background: rgba(255, 196, 49, 0.05);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 1.2rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 196, 49, 0.2);
+      }
+
+      .data-table th {
+        background: rgba(255, 196, 49, 0.2);
+        color: #ffc431;
+        font-weight: 700;
+      }
+
+      .data-table tr:hover {
+        background: rgba(255, 196, 49, 0.1);
+      }
+
+      /* Decryption effect */
+      .decrypt-text {
+        opacity: 0;
+      }
+
+      .decrypt-text.decrypting {
+        opacity: 1;
+      }
+
+      .decrypt-on-scroll {
+        opacity: 1;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes scan {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      @keyframes barGrow {
+        from {
+          transform: scaleY(0);
+        }
+        to {
+          transform: scaleY(1);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .section {
+          padding: 2rem 1rem;
+        }
+
+        .timeline {
+          padding-left: 2rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .bar-chart {
+          padding: 1rem;
+        }
+      }
+
+      /* Section-specific backgrounds */
+      .section:nth-child(even) {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 196, 49, 0.02),
+          transparent
+        );
+      }
+
+      /* Footer */
+      .footer {
+        padding: 3rem 2rem;
+        text-align: center;
+        background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        border-top: 1px solid rgba(255, 196, 49, 0.3);
+      }
+
+      .footer p {
+        color: #888888;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Floating progress bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ffc431, #ffdb66);
+        z-index: 1000;
+        transition: width 0.1s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Particles canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="decrypt-text" data-text="Hotel Booking Trends & AI">
+          Hotel Booking Trends & AI
+        </h1>
+        <p
+          class="subtitle decrypt-text"
+          data-text="Strategic Analysis of Market Evolution and Future Perspectives"
+        >
+          Strategic Analysis of Market Evolution and Future Perspectives
+        </p>
+        <p
+          class="code-comment decrypt-text"
+          data-text="// Data updated: July 2025. Comprehensive research based on industry-leading sources."
+        >
+          // Data updated: July 2025. Comprehensive research based on
+          industry-leading sources.
+        </p>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Executive Summary -->
+      <section class="section">
+        <div class="container">
+          <h2 class="decrypt-on-scroll">Executive Summary</h2>
+          <p class="code-comment">
+            // Key findings and strategic recommendations
+          </p>
+
+          <div class="highlight">
+            <h3 class="decrypt-on-scroll">Key Findings</h3>
+            <p class="decrypt-on-scroll">
+              The hotel industry is experiencing accelerated digital
+              transformation, where artificial intelligence and new booking
+              channels are redefining customer experience and distribution
+              strategies.
+            </p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number">40%</span>
+              <div class="stat-label">Global OTA market share</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">52%</span>
+              <div class="stat-label">
+                OTA leisure sales representation (US)
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">58%</span>
+              <div class="stat-label">
+                Guests who believe AI improves experience
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">15%</span>
+              <div class="stat-label">Energy consumption reduction with AI</div>
+            </div>
+          </div>
+
+          <h3 class="decrypt-on-scroll">Main Transformations</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Distribution Channels
+              </div>
+              <p class="decrypt-on-scroll">
+                OTAs maintain dominance but direct channels are evolving with
+                new technologies like conversational AI, virtual reality, and
+                omnichannel experiences.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Advanced Personalization
+              </div>
+              <p class="decrypt-on-scroll">
+                AI enables scale hyperpersonalization, adapting offers, prices,
+                and experiences to individual guest profiles in real-time.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Operational Sustainability
+              </div>
+              <p class="decrypt-on-scroll">
+                Intelligent systems optimize energy consumption, resource
+                management, and predictive maintenance, contributing to
+                sustainability goals.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Generational Differences
+              </div>
+              <p class="decrypt-on-scroll">
+                Marked differences between generations: Gen Z prefers digital
+                experiences (35% vacation rentals), while Baby Boomers favor
+                traditional chains (34%).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Market Analysis -->
+      <section class="section">
+        <div class="container">
+          <h2 class="decrypt-on-scroll">Current Market Analysis</h2>
+          <p class="code-comment">
+            // Global overview of booking channels and market share
+          </p>
+
+          <h3 class="decrypt-on-scroll">OTA Dominance by Region</h3>
+          <div class="chart-container">
+            <div class="bar-chart" id="marketChart">
+              <div class="bar" style="height: 60%" data-value="40">
+                <div class="bar-label decrypt-on-scroll">OTAs</div>
+                <div class="bar-value decrypt-on-scroll">40%</div>
+              </div>
+              <div class="bar" style="height: 52%" data-value="35">
+                <div class="bar-label decrypt-on-scroll">Direct</div>
+                <div class="bar-value decrypt-on-scroll">35%</div>
+              </div>
+              <div class="bar" style="height: 22%" data-value="15">
+                <div class="bar-label decrypt-on-scroll">Agencies</div>
+                <div class="bar-value decrypt-on-scroll">15%</div>
+              </div>
+              <div class="bar" style="height: 15%" data-value="10">
+                <div class="bar-label decrypt-on-scroll">Others</div>
+                <div class="bar-value decrypt-on-scroll">10%</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="decrypt-on-scroll">Major Market Players</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Group</th>
+                <th>Main Brands</th>
+                <th>Regional Strength</th>
+                <th>Market Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Booking Holdings</strong></td>
+                <td>Booking.com, Priceline, Agoda, KAYAK</td>
+                <td>Europe (67.7%), Global</td>
+                <td>Global leader</td>
+              </tr>
+              <tr>
+                <td><strong>Expedia Group</strong></td>
+                <td>Expedia, Hotels.com, Vrbo, Trivago</td>
+                <td>United States, Europe</td>
+                <td>92% combined with Booking (US)</td>
+              </tr>
+              <tr>
+                <td><strong>Trip.com Group</strong></td>
+                <td>Trip.com (Ctrip), Qunar</td>
+                <td>China, Asia-Pacific</td>
+                <td>Dominant in China</td>
+              </tr>
+              <tr>
+                <td><strong>Despegar</strong></td>
+                <td>Despegar.com, BestDay</td>
+                <td>Latin America</td>
+                <td>Regional leader</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="highlight">
+            <h4 class="decrypt-on-scroll">Post-Pandemic Evolution</h4>
+            <p class="decrypt-on-scroll">
+              <strong>Accelerated recovery:</strong> In 2021, OTAs experienced a
+              97% increase in gross hotel bookings in the US, reaching nearly
+              $41 billion.
+            </p>
+            <p class="decrypt-on-scroll">
+              <strong>Channel rebalancing:</strong> By 2023, direct online
+              channels were projected to surpass OTAs again, representing 51% of
+              total online leisure sales.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Future Trends -->
+      <section class="section">
+        <div class="container">
+          <h2 class="decrypt-on-scroll">Future Trends in Booking Methods</h2>
+          <p class="code-comment">
+            // Evolution towards omnichannel experiences and emerging technology
+            integration
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number">35%</span>
+              <div class="stat-label">AI-influenced bookings by 2027</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">24/7</span>
+              <div class="stat-label">Virtual concierge availability</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">+200%</span>
+              <div class="stat-label">ChatGPT user growth</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">+367%</span>
+              <div class="stat-label">Voice/Audio AI model growth</div>
+            </div>
+          </div>
+
+          <h3 class="decrypt-on-scroll">Emerging Technologies</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                2025-2026: Web Transformation
+              </div>
+              <p class="decrypt-on-scroll">
+                Web will remain relevant but transform towards more intuitive
+                interfaces with greater AI integration for personalization and
+                immersive interfaces with virtual reality.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                2026-2027: Emerging Channels
+              </div>
+              <p class="decrypt-on-scroll">
+                Gradual migration towards native mobile applications, messaging
+                platforms, virtual assistants, and systems integrated into
+                broader digital ecosystems.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                2027-2030: Omnichannel Era
+              </div>
+              <p class="decrypt-on-scroll">
+                Complete integration between channels with fluid experiences
+                that allow starting bookings on one channel and completing them
+                on another without context loss.
+              </p>
+            </div>
+          </div>
+
+          <div class="highlight">
+            <h4 class="decrypt-on-scroll">AI Agent Capabilities</h4>
+            <ul class="feature-list">
+              <li class="decrypt-on-scroll">
+                Automatic search and filtering based on complex criteria
+              </li>
+              <li class="decrypt-on-scroll">
+                Rate negotiation within established parameters
+              </li>
+              <li class="decrypt-on-scroll">
+                Change and cancellation management without human intervention
+              </li>
+              <li class="decrypt-on-scroll">
+                Integration with digital ecosystems (Alexa, Google Assistant)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Impact -->
+      <section class="section">
+        <div class="container">
+          <h2 class="decrypt-on-scroll">AI Impact on Experience and Staff</h2>
+          <p class="code-comment">
+            // Transformation of hotel operations and guest-hotel relationship
+          </p>
+
+          <div class="chart-container">
+            <h4 class="decrypt-on-scroll">AI Implementation Benefits</h4>
+            <div class="bar-chart">
+              <div class="bar" style="height: 85%" data-value="85">
+                <div class="bar-label decrypt-on-scroll">
+                  Customer Satisfaction
+                </div>
+                <div class="bar-value decrypt-on-scroll">+27%</div>
+              </div>
+              <div class="bar" style="height: 60%" data-value="40">
+                <div class="bar-label decrypt-on-scroll">
+                  Operational Efficiency
+                </div>
+                <div class="bar-value decrypt-on-scroll">+40%</div>
+              </div>
+              <div class="bar" style="height: 45%" data-value="30">
+                <div class="bar-label decrypt-on-scroll">Cost Reduction</div>
+                <div class="bar-value decrypt-on-scroll">-30%</div>
+              </div>
+              <div class="bar" style="height: 35%" data-value="35">
+                <div class="bar-label decrypt-on-scroll">Reception Calls</div>
+                <div class="bar-value decrypt-on-scroll">-35%</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="decrypt-on-scroll">Staff Transformation</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Traditional Role</th>
+                <th>Automation Risk</th>
+                <th>New Function</th>
+                <th>Required Skills</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Receptionist</td>
+                <td>High (basic functions)</td>
+                <td>Experience specialist</td>
+                <td>Complex resolution, empathy</td>
+              </tr>
+              <tr>
+                <td>Concierge</td>
+                <td>Medium</td>
+                <td>Local experience curator</td>
+                <td>Cultural knowledge, networking</td>
+              </tr>
+              <tr>
+                <td>Reservations staff</td>
+                <td>High</td>
+                <td>VIP relationship manager</td>
+                <td>Consultative sales, personalization</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="highlight">
+            <h4 class="decrypt-on-scroll">New Job Opportunities</h4>
+            <ul class="feature-list">
+              <li class="decrypt-on-scroll">
+                Digital Experience Managers - Supervising guest-system
+                interactions
+              </li>
+              <li class="decrypt-on-scroll">
+                Hotel Data Specialists - Interpreting AI-generated insights
+              </li>
+              <li class="decrypt-on-scroll">
+                Smart Systems Technicians - Maintaining technological
+                infrastructure
+              </li>
+              <li class="decrypt-on-scroll">
+                Virtual Content Creators - Designing VR/AR experiences
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Opportunities -->
+      <section class="section">
+        <div class="container">
+          <h2 class="decrypt-on-scroll">
+            Adoption Opportunities and Challenges
+          </h2>
+          <p class="code-comment">
+            // Viability analysis, investment, and strategic considerations
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number">-15%</span>
+              <div class="stat-label">Energy consumption reduction</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">95%</span>
+              <div class="stat-label">Thermal preference accuracy</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">15-30%</span>
+              <div class="stat-label">Operational cost savings</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">2-3</span>
+              <div class="stat-label">Years for transformation</div>
+            </div>
+          </div>
+
+          <h3 class="decrypt-on-scroll">Investment vs. Return by Segment</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Segment</th>
+                <th>Initial Investment</th>
+                <th>Main Focus</th>
+                <th>Expected ROI</th>
+                <th>Payback Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Luxury Hotels</strong></td>
+                <td>High</td>
+                <td>Experience and differentiation</td>
+                <td>15-25%</td>
+                <td>2-3 years</td>
+              </tr>
+              <tr>
+                <td><strong>Mid-Range</strong></td>
+                <td>Moderate</td>
+                <td>Experience/efficiency balance</td>
+                <td>20-30%</td>
+                <td>1.5-2 years</td>
+              </tr>
+              <tr>
+                <td><strong>Budget</strong></td>
+                <td>Low-Moderate</td>
+                <td>Efficiency and cost reduction</td>
+                <td>25-40%</td>
+                <td>1-1.5 years</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="highlight">
+            <h4 class="decrypt-on-scroll">Key Opportunities</h4>
+            <ul class="feature-list">
+              <li class="decrypt-on-scroll">
+                Transformative efficiency: 15-30% savings in operational costs
+              </li>
+              <li class="decrypt-on-scroll">
+                Scale personalization: Premium experiences for large volume
+              </li>
+              <li class="decrypt-on-scroll">
+                Improved sustainability: Significant environmental footprint
+                reduction
+              </li>
+              <li class="decrypt-on-scroll">
+                Competitive advantage: Especially in emerging markets
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Global Insights -->
+      <section class="section">
+        <div class="container">
+          <h2 class="decrypt-on-scroll">Global AI Insights</h2>
+          <p class="code-comment">
+            // Macro trends impacting the hotel sector (BOND, May 2025)
+          </p>
+
+          <div class="chart-container">
+            <h4 class="decrypt-on-scroll">AI Platform Competition</h4>
+            <div class="bar-chart">
+              <div class="bar" style="height: 90%" data-value="5100">
+                <div class="bar-label decrypt-on-scroll">ChatGPT</div>
+                <div class="bar-value decrypt-on-scroll">5.1B visits</div>
+              </div>
+              <div class="bar" style="height: 30%" data-value="480">
+                <div class="bar-label decrypt-on-scroll">DeepSeek</div>
+                <div class="bar-value decrypt-on-scroll">480M visits</div>
+              </div>
+              <div class="bar" style="height: 20%" data-value="196">
+                <div class="bar-label decrypt-on-scroll">xAI Grok</div>
+                <div class="bar-value decrypt-on-scroll">196M visits</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Unprecedented Acceleration
+              </div>
+              <p class="decrypt-on-scroll">
+                ChatGPT described as "the biggest 'overnight' success in
+                history" with +200% growth in weekly active users.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Massive Infrastructure Investment
+              </div>
+              <p class="decrypt-on-scroll">
+                Tech companies spending 15% of revenue on AI CapEx, up from 8% a
+                decade ago. Amazon AWS: 49% vs. 4% in 2018.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year decrypt-on-scroll">
+                Multimodal Explosion
+              </div>
+              <p class="decrypt-on-scroll">
+                +367% growth in voice/audio AI models, +120% in video models.
+                GPU performance improved 225x in 8 years.
+              </p>
+            </div>
+          </div>
+
+          <div class="highlight">
+            <h4 class="decrypt-on-scroll">
+              Hotel Industry Strategic Implications
+            </h4>
+            <ul class="feature-list">
+              <li class="decrypt-on-scroll">
+                Digital acceleration: Transformation in 2-3 years vs. 5 years
+                predicted
+              </li>
+              <li class="decrypt-on-scroll">
+                Technology democratization: AI accessible for hotels of all
+                sizes
+              </li>
+              <li class="decrypt-on-scroll">
+                Multimodal experiences: Voice, audio, and video will transform
+                interactions
+              </li>
+              <li class="decrypt-on-scroll">
+                Experience competition: Differentiation based on digital
+                experience quality
+              </li>
+              <li class="decrypt-on-scroll">
+                Platform strategy: Flexibility to leverage competitive ecosystem
+              </li>
+              <li class="decrypt-on-scroll">
+                Visual focus: Immersive content critical for Gen Z and
+                Millennials
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Hotel Trends Analysis - Strategic Research</p>
+        <p class="code-comment">
+          // Data compiled from leading sources: SiteMinder, RevFine, Canary
+          Technologies, HotelTechReport, BOND
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Particles System
+      class ParticleSystem {
+        constructor() {
+          this.canvas = document.getElementById("particles-canvas");
+          this.ctx = this.canvas.getContext("2d");
+          this.particles = [];
+          this.mouse = { x: 0, y: 0 };
+          this.scrollY = 0;
+
+          this.resize();
+          this.init();
+          this.animate();
+
+          window.addEventListener("resize", () => this.resize());
+          window.addEventListener("scroll", () => {
+            this.scrollY = window.pageYOffset;
+          });
+          window.addEventListener("mousemove", (e) => {
+            this.mouse.x = e.clientX;
+            this.mouse.y = e.clientY;
+          });
+        }
+
+        resize() {
+          this.canvas.width = window.innerWidth;
+          this.canvas.height = window.innerHeight;
+        }
+
+        init() {
+          const particleCount = Math.min(
+            100,
+            Math.floor(window.innerWidth / 20)
+          );
+          for (let i = 0; i < particleCount; i++) {
+            this.particles.push({
+              x: Math.random() * this.canvas.width,
+              y: Math.random() * this.canvas.height,
+              vx: (Math.random() - 0.5) * 0.5,
+              vy: (Math.random() - 0.5) * 0.5,
+              size: Math.random() * 2 + 1,
+              opacity: Math.random() * 0.5 + 0.2,
+              originalY: Math.random() * this.canvas.height,
+            });
+          }
+        }
+
+        animate() {
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+          this.particles.forEach((particle, index) => {
+            // Parallax effect
+            particle.y = particle.originalY + this.scrollY * 0.5;
+
+            // Movement
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            // Mouse interaction
+            const dx = this.mouse.x - particle.x;
+            const dy = this.mouse.y - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+              particle.x -= dx * 0.01;
+              particle.y -= dy * 0.01;
+            }
+
+            // Boundaries
+            if (particle.x < 0 || particle.x > this.canvas.width)
+              particle.vx *= -1;
+            if (particle.y < -100 || particle.y > this.canvas.height + 100) {
+              particle.y = particle.originalY + this.scrollY * 0.5;
+            }
+
+            // Draw particle
+            this.ctx.save();
+            this.ctx.globalAlpha = particle.opacity;
+            this.ctx.fillStyle = "#ffc431";
+            this.ctx.shadowBlur = 10;
+            this.ctx.shadowColor = "#ffc431";
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.restore();
+
+            // Draw connections
+            this.particles.slice(index + 1).forEach((otherParticle) => {
+              const dx = particle.x - otherParticle.x;
+              const dy = particle.y - otherParticle.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < 120) {
+                this.ctx.save();
+                this.ctx.globalAlpha = ((120 - distance) / 120) * 0.1;
+                this.ctx.strokeStyle = "#ffc431";
+                this.ctx.lineWidth = 1;
+                this.ctx.beginPath();
+                this.ctx.moveTo(particle.x, particle.y);
+                this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                this.ctx.stroke();
+                this.ctx.restore();
+              }
+            });
+          });
+
+          requestAnimationFrame(() => this.animate());
+        }
+      }
+
+      // Initialize particles
+      new ParticleSystem();
+
+      // Text Decryption Effect
+      class TextDecryptor {
+        constructor() {
+          this.chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()[]{}|;:,.<>?";
+          this.initDecryption();
+        }
+
+        initDecryption() {
+          // Wait a bit then start decryption
+          setTimeout(() => {
+            const elements = document.querySelectorAll(".decrypt-text");
+            elements.forEach((el, index) => {
+              setTimeout(() => {
+                this.decryptByWord(el);
+              }, index * 300);
+            });
+          }, 500);
+        }
+
+        decryptByWord(element) {
+          const originalText = element.dataset.text;
+          const words = originalText.split(" ");
+          let currentWords = [];
+          let wordIndex = 0;
+
+          element.classList.add("decrypting");
+
+          const interval = setInterval(() => {
+            if (wordIndex < words.length) {
+              // Add the next word correctly
+              currentWords[wordIndex] = words[wordIndex];
+              wordIndex++;
+
+              // Fill remaining positions with random characters
+              const displayWords = [...currentWords];
+              for (let i = wordIndex; i < words.length; i++) {
+                displayWords[i] = this.generateRandomWord(words[i].length);
+              }
+
+              element.textContent = displayWords.join(" ");
+            } else {
+              clearInterval(interval);
+              element.textContent = originalText;
+            }
+          }, 100);
+        }
+
+        generateRandomWord(length) {
+          return Array.from(
+            { length },
+            () => this.chars[Math.floor(Math.random() * this.chars.length)]
+          ).join("");
+        }
+
+        // Method for scroll-triggered decryption
+        decryptElement(element) {
+          if (element.dataset.decrypted) return;
+          element.dataset.decrypted = "true";
+
+          const originalText = element.textContent;
+          element.dataset.text = originalText;
+          this.decryptByWord(element);
+        }
+      }
+
+      // Initialize text decryption
+      const textDecryptor = new TextDecryptor();
+
+      // Scroll-based animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+
+            // Decrypt text on scroll with staggered delays
+            if (entry.target.classList.contains("decrypt-on-scroll")) {
+              setTimeout(() => {
+                textDecryptor.decryptElement(entry.target);
+              }, Math.random() * 300 + 100);
+            }
+
+            // Animate stats cards
+            if (entry.target.classList.contains("stat-card")) {
+              setTimeout(() => {
+                entry.target.classList.add("visible");
+              }, Math.random() * 500);
+            }
+
+            // Animate bars
+            if (entry.target.querySelector(".bar")) {
+              entry.target.querySelectorAll(".bar").forEach((bar, index) => {
+                setTimeout(() => {
+                  bar.classList.add("animate");
+                }, index * 200);
+              });
+            }
+
+            // Animate list items
+            if (entry.target.querySelector(".feature-list li")) {
+              entry.target
+                .querySelectorAll(".feature-list li")
+                .forEach((item, index) => {
+                  setTimeout(() => {
+                    item.classList.add("visible");
+                  }, index * 100);
+                });
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections and elements
+      document
+        .querySelectorAll(
+          ".section, .stat-card, .timeline-item, .chart-container, .decrypt-on-scroll"
+        )
+        .forEach((el) => {
+          observer.observe(el);
+        });
+
+      // Progress bar
+      function updateProgressBar() {
+        const scrollTop = window.pageYOffset;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        document.getElementById("progressBar").style.width =
+          scrollPercent + "%";
+      }
+
+      window.addEventListener("scroll", updateProgressBar);
+
+      // Smooth scroll for better performance
+      let ticking = false;
+
+      function updateScrollEffects() {
+        updateProgressBar();
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          requestAnimationFrame(updateScrollEffects);
+          ticking = true;
+        }
+      });
+    </script>
+  </body>
+</html>
