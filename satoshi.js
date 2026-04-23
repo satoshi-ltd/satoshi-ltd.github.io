@@ -160,13 +160,25 @@
     }
 
     form.addEventListener('input', updateSend);
+    function openMailto(mailto) {
+      // Use a programmatic anchor click — works in Arc/Brave where
+      // window.location.href with a mailto: just opens a blank tab.
+      var a = document.createElement('a');
+      a.href = mailto;
+      a.rel = 'noopener';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!canSend()) return;
       var data = readForm();
       var mailto = buildMailto(data);
       retryLink.href = mailto;
-      window.location.href = mailto;
+      openMailto(mailto);
       show('sent');
     });
 
