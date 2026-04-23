@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SplitPass · Case Study · Satoshi Ltd.</title>
+    <meta name="description" content="A device-held vault for passwords, cards and BIP39 seed phrases, with shard-based recovery. Argon2id + AES-GCM, opaque v3 envelope, zero telemetry." />
+    <link rel="canonical" href="https://satoshi-ltd.com/case-studies/splitpass.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="SplitPass · Case Study · Satoshi Ltd." />
+    <meta property="og:description" content="High-value secrets, split so no single place can lose them." />
+    <meta property="og:image" content="https://satoshi-ltd.com/og-image.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../satoshi.css" />
+  </head>
+  <body>
+    <nav class="sat-nav">
+      <a class="sat-nav__brand" href="../index.html" aria-label="Satoshi Ltd. home">
+        <span class="sat-dot" aria-hidden="true"></span>
+        <span class="sat-nav__name">SATOSHI<span class="muted">/LTD</span><span class="sep">/</span><span class="crumb">splitpass</span></span>
+      </a>
+      <div class="sat-nav__links">
+        <a href="../index.html#about"><span class="prompt">$</span> about</a>
+        <a href="../index.html#case-studies"><span class="prompt">$</span> case-studies</a>
+        <a href="../index.html#engage"><span class="prompt">$</span> engage</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="sat-section--cs-hero">
+      <div class="sat-container">
+        <div class="sat-cs-eyebrow">[ CASE STUDY · 01 / 03 ] ——— SPLITPASS · V1.3.0 · SHIPPED</div>
+        <div class="sat-cs-hero-grid">
+          <div>
+            <div class="sat-cs-prompt"><span class="user">satoshi@case-studies ~ $</span> cat splitpass.brief</div>
+            <h1 class="sat-h1-cs">High-value secrets,<br /><span class="accent">split</span> so no single place <span class="italic">can lose them</span>.</h1>
+            <p class="sat-cs-lede">A mobile vault for passwords, payment cards and BIP39 seed phrases — with an original shard-recovery system so a single compromised device, backup or custodian can&rsquo;t reveal the secret.</p>
+            <div class="sat-chips">
+              <span class="sat-chip">Privacy engineering</span>
+              <span class="sat-chip">Cryptography</span>
+              <span class="sat-chip">iOS / Android</span>
+              <span class="sat-chip">Browser ext.</span>
+              <span class="sat-chip">NFC / QR</span>
+            </div>
+          </div>
+          <aside class="sat-yaml">
+            <div class="sat-yaml__head"><span>ENGAGEMENT.YAML</span><span class="dot">●</span></div>
+            <div class="sat-yaml__body">
+              <div class="sat-yaml__row"><span class="k">client</span><span>Internal / satoshi-ltd</span></div>
+              <div class="sat-yaml__row"><span class="k">type</span><span>Product R&amp;D + delivery</span></div>
+              <div class="sat-yaml__row"><span class="k">duration</span><span>18 months, iterative</span></div>
+              <div class="sat-yaml__row"><span class="k">team</span><span>2 engineers + 1 crypto reviewer</span></div>
+              <div class="sat-yaml__row"><span class="k">stack</span><span>Expo / React Native 0.83</span></div>
+              <div class="sat-yaml__row"><span class="k">crypto</span><span>Argon2id · AES-GCM · v3 envelope</span></div>
+              <div class="sat-yaml__row"><span class="k">status</span><span class="v-ok">shipped · App Store · Play</span></div>
+              <div class="sat-yaml__row"><span class="k">repo</span><span>@satoshi-ltd/splitpass</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- AT A GLANCE -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[01]</div>
+          <div class="sat-sh__label">AT_A_GLANCE/</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-metrics">
+          <div class="sat-metric"><div class="sat-metric__k">0</div><div class="sat-metric__label">single points of failure</div><div class="sat-metric__note">by design — shards required</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">3</div><div class="sat-metric__label">secret formats supported</div><div class="sat-metric__note">password · card · seed phrase</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">v3</div><div class="sat-metric__label">encryption envelope</div><div class="sat-metric__note">Argon2id → AES-GCM</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">∅</div><div class="sat-metric__label">telemetry / analytics</div><div class="sat-metric__note">nothing leaves the device</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHALLENGE -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[02]</div>
+          <div class="sat-sh__label">THE_PROBLEM.MD</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-twocol">
+          <div>
+            <h2 class="sat-h2-cs">Password managers trust one place. That&rsquo;s the whole problem.</h2>
+            <p class="sat-copy">A user&rsquo;s master vault is worth everything: logins, bank cards, the 24-word phrase behind their wallet. Yet it&rsquo;s usually protected by <em>one</em> passphrase, on <em>one</em> cloud, with one vendor holding the keys.</p>
+            <p class="sat-copy">We wanted the opposite: a vault where the worst-case breach still tells an attacker nothing — and a recovery path that doesn&rsquo;t depend on any company being alive in five years.</p>
+          </div>
+          <div class="sat-problems">
+            <div class="sat-problem"><div class="sat-problem__k">A.</div><div><div class="sat-problem__t">Single-vendor risk</div><div class="sat-problem__d">If the provider is breached, coerced, or sunset, the user is exposed or locked out.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">B.</div><div><div class="sat-problem__t">Single-device risk</div><div class="sat-problem__d">Lose the phone → lose the vault. Back it up to the cloud → centralise the risk you were avoiding.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">C.</div><div><div class="sat-problem__t">Plaintext recovery</div><div class="sat-problem__d">Seed phrases and &ldquo;security questions&rdquo; end up on paper, in notes apps, or on screenshots in Drive.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">D.</div><div><div class="sat-problem__t">Branded backups</div><div class="sat-problem__d">Exported archive files advertise what they contain, turning every backup into a target.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[03]</div>
+          <div class="sat-sh__label">APPROACH.MD</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-twocol--even" style="margin-top:48px;display:grid;">
+          <div>
+            <div class="sat-kicker">// FOUR MOVES</div>
+            <h2 class="sat-h2-cs">Local-first, split-by-default, opaque on the wire.</h2>
+          </div>
+          <p class="sat-copy" style="margin-top:8px;">We refused three things: a server, a single secret, and a file format that reveals anything before decryption. What&rsquo;s left is a device-held vault that normalises every secret into the same numeric payload, then treats splitting and scanning as first-class operations.</p>
+        </div>
+        <div class="sat-four">
+          <div class="sat-four__cell"><div class="sat-four__n">[01]</div><div class="sat-four__t">Device-held vault</div><div class="sat-four__d">AsyncStorage + Argon2id-derived keys. The master passphrase never leaves RAM, and we never see it.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[02]</div><div class="sat-four__t">One payload format</div><div class="sat-four__d">Passwords, cards, and 12/24-word BIP39 phrases all normalise to a numeric payload. Split and scan work on any of them.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[03]</div><div class="sat-four__t">Shard-based recovery</div><div class="sat-four__d">A secret can be split into pieces that live separately — QR, NFC, paper. No single piece reveals anything.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[04]</div><div class="sat-four__t">Opaque on disk</div><div class="sat-four__d">Backup archives carry no SplitPass branding, version marker, or hint of vault content before the passphrase is entered.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPLIT RECOVERY -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[04]</div>
+          <div class="sat-sh__label">SPLIT_RECOVERY/</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-twocol--even-wide" style="margin-top:48px;display:grid;">
+          <div>
+            <h2 class="sat-h2-cs sat-h2-cs--sm">The core trick: normalise, then split.</h2>
+            <p class="sat-copy">Every secret — a web password, a card number, a 24-word mnemonic — is converted into a deterministic numeric payload. That payload can then be stored locally, encrypted, or carved into recoverable pieces for QR or NFC transport.</p>
+            <p class="sat-copy">Reconstruction is the exact inverse: the app scans or reads enough material, decrypts it if needed, and decodes it back. Legacy PIN-protected payloads stay readable so older scans never orphan a user.</p>
+            <div class="sat-tenet">
+              <div class="sat-tenet__k">// RECOVERY INVARIANT</div>
+              <div class="sat-tenet__t">Any single shard — paper, phone, QR photo, NFC tag — reveals nothing. Only the agreed combination rebuilds the secret. The app never assumes it can recover on behalf of the user.</div>
+            </div>
+          </div>
+          <div class="sat-fig">
+            <div class="sat-fig__labels"><span>FIG. 01 — PAYLOAD LIFECYCLE</span><span>satoshi-ltd/splitpass</span></div>
+            <svg viewBox="0 0 520 460" style="margin-top:16px;font-family:'Fragment Mono', monospace" aria-hidden="true">
+              <defs>
+                <marker id="arrow-sp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 Z" fill="#ffc431" />
+                </marker>
+              </defs>
+              <g>
+                <rect x="10" y="12" width="110" height="36" fill="#0a0a0a" stroke="#2a2a2a" />
+                <text x="65" y="34" font-size="11" fill="#d6d3c9" text-anchor="middle">password</text>
+                <line x1="120" y1="30" x2="180" y2="90" stroke="#3a3a3a" stroke-width="1" marker-end="url(#arrow-sp)" />
+              </g>
+              <g>
+                <rect x="10" y="72" width="110" height="36" fill="#0a0a0a" stroke="#2a2a2a" />
+                <text x="65" y="94" font-size="11" fill="#d6d3c9" text-anchor="middle">card</text>
+                <line x1="120" y1="90" x2="180" y2="90" stroke="#3a3a3a" stroke-width="1" marker-end="url(#arrow-sp)" />
+              </g>
+              <g>
+                <rect x="10" y="132" width="110" height="36" fill="#0a0a0a" stroke="#2a2a2a" />
+                <text x="65" y="154" font-size="11" fill="#d6d3c9" text-anchor="middle">seed 24w</text>
+                <line x1="120" y1="150" x2="180" y2="90" stroke="#3a3a3a" stroke-width="1" marker-end="url(#arrow-sp)" />
+              </g>
+
+              <rect x="180" y="60" width="140" height="60" fill="rgba(255,196,49,0.08)" stroke="#ffc431" />
+              <text x="250" y="88" font-size="12" fill="#ffc431" text-anchor="middle" font-weight="600">normalize()</text>
+              <text x="250" y="106" font-size="10" fill="#a5a29a" text-anchor="middle">→ numeric payload</text>
+
+              <line x1="320" y1="90" x2="380" y2="50" stroke="#3a3a3a" marker-end="url(#arrow-sp)" />
+              <line x1="320" y1="90" x2="380" y2="160" stroke="#3a3a3a" marker-end="url(#arrow-sp)" />
+
+              <rect x="380" y="20" width="130" height="60" fill="#0a0a0a" stroke="#ffc431" />
+              <text x="445" y="46" font-size="12" fill="#e8e6df" text-anchor="middle" font-weight="600">v3 vault</text>
+              <text x="445" y="64" font-size="10" fill="#7a7873" text-anchor="middle">Argon2id + AES-GCM</text>
+
+              <rect x="380" y="130" width="130" height="60" fill="#0a0a0a" stroke="#F46A3A" />
+              <text x="445" y="156" font-size="12" fill="#F46A3A" text-anchor="middle" font-weight="600">shards</text>
+              <text x="445" y="174" font-size="10" fill="#a5a29a" text-anchor="middle">split / combine</text>
+
+              <line x1="445" y1="190" x2="100" y2="260" stroke="#3a3a3a" marker-end="url(#arrow-sp)" />
+              <line x1="445" y1="190" x2="255" y2="260" stroke="#3a3a3a" marker-end="url(#arrow-sp)" />
+              <line x1="445" y1="190" x2="410" y2="260" stroke="#3a3a3a" marker-end="url(#arrow-sp)" />
+
+              <rect x="30" y="240" width="140" height="44" fill="#0a0a0a" stroke="#2a2a2a" />
+              <text x="100" y="267" font-size="11" fill="#d6d3c9" text-anchor="middle">QR</text>
+              <rect x="185" y="240" width="140" height="44" fill="#0a0a0a" stroke="#2a2a2a" />
+              <text x="255" y="267" font-size="11" fill="#d6d3c9" text-anchor="middle">NFC</text>
+              <rect x="340" y="240" width="140" height="44" fill="#0a0a0a" stroke="#2a2a2a" />
+              <text x="410" y="267" font-size="11" fill="#d6d3c9" text-anchor="middle">paper</text>
+
+              <line x1="260" y1="284" x2="260" y2="340" stroke="#3a3a3a" marker-end="url(#arrow-sp)" />
+              <rect x="160" y="340" width="200" height="60" fill="rgba(255,196,49,0.08)" stroke="#ffc431" />
+              <text x="260" y="368" font-size="12" fill="#ffc431" text-anchor="middle" font-weight="600">combine + decode</text>
+              <text x="260" y="386" font-size="10" fill="#a5a29a" text-anchor="middle">→ original secret, intact</text>
+
+              <text x="10" y="220" font-size="9" fill="#4a4a4a" letter-spacing="1">  TRANSPORT ▾</text>
+              <text x="10" y="330" font-size="9" fill="#4a4a4a" letter-spacing="1">  RECOVERY ▾</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRYPTO -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[05]</div>
+          <div class="sat-sh__label">CRYPTO_CORE/</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-twocol--code" style="margin-top:56px;display:grid;">
+          <div>
+            <div class="sat-kicker">// V3 ENVELOPE</div>
+            <h2 class="sat-h2-cs sat-h2-cs--xs">Argon2id for the key, AES-GCM for the data, no branding on the wire.</h2>
+            <p class="sat-copy">A native Argon2id bridge derives the vault key from the user&rsquo;s master passphrase. The derived key stays in memory only while the vault is unlocked. Every record and every exported backup is wrapped in an opaque <code>v3</code> envelope — no magic bytes, no readable headers, no version strings outside the ciphertext.</p>
+            <p class="sat-copy">Legacy <code class="mute">v1</code> and <code class="mute">v2</code> records stay readable and migrate forward after a correct unlock, so upgrades never stranded a vault.</p>
+          </div>
+          <pre class="sat-code">// vault/encrypt.ts — simplified
+
+const salt = crypto.randomBytes(16);
+const key  = await argon2id(passphrase, salt, {
+  iterations: 3,
+  memory:     64 * 1024,   // 64 MiB
+  parallelism: 2,
+  hashLength:  32,
+});
+
+const iv        = crypto.randomBytes(12);
+const cipher    = aesGcm(key, iv);
+const payload   = cipher.encrypt(<span class="accent">plaintextSecret</span>);
+
+// opaque v3 envelope — no magic bytes, no labels
+return concat(salt, iv, payload.authTag, payload.ciphertext);
+
+// on disk:  [ salt │ iv │ tag │ ciphertext ]  ← looks like noise</pre>
+        </div>
+
+        <div class="sat-kv">
+          <div class="sat-kv__cell"><div class="sat-kv__k">KDF</div><div class="sat-kv__v">Argon2id</div><div class="sat-kv__n">native bridge, 64 MiB, t=3, p=2</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">CIPHER</div><div class="sat-kv__v">AES-256-GCM</div><div class="sat-kv__n">authenticated; per-record nonce</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">ENVELOPE</div><div class="sat-kv__v">opaque v3</div><div class="sat-kv__n">no markers, no branding</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">AUTO-LOCK</div><div class="sat-kv__v">~immediate</div><div class="sat-kv__n">backgrounded → vault wiped from RAM</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">BIOMETRIC</div><div class="sat-kv__v">opt-in gate</div><div class="sat-kv__n">re-enter passphrase to enable</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">COMPAT</div><div class="sat-kv__v">v1 / v2 / v3</div><div class="sat-kv__n">legacy payloads migrate after unlock</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURFACES -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[06]</div>
+          <div class="sat-sh__label">SURFACES/</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-surfaces">
+          <div class="sat-surface">
+            <div class="sat-surface__h">Mobile app</div>
+            <div class="sat-surface__b">Expo / React Native 0.83 on iOS &amp; Android. Camera-based QR scanner, NFC read/write, biometric unlock, encrypted local backups via document picker.</div>
+            <div class="sat-surface__chips"><span class="sat-surface__chip">Expo SDK 55</span><span class="sat-surface__chip">iOS 16+</span><span class="sat-surface__chip">Android 10+</span></div>
+          </div>
+          <div class="sat-surface">
+            <div class="sat-surface__h">Browser extension</div>
+            <div class="sat-surface__b">Companion extension for Chromium and Safari: scans QR codes surfaced in a page and fills password fields from a paired vault.</div>
+            <div class="sat-surface__chips"><span class="sat-surface__chip">Manifest v3</span><span class="sat-surface__chip">Safari Web Ext.</span><span class="sat-surface__chip">Jest</span></div>
+          </div>
+          <div class="sat-surface">
+            <div class="sat-surface__h">Recovery protocol</div>
+            <div class="sat-surface__b">A compact numeric payload, a B-type envelope that can optionally ship the username alongside the secret, and full backward compatibility with earlier PIN-era payloads.</div>
+            <div class="sat-surface__chips"><span class="sat-surface__chip">QR</span><span class="sat-surface__chip">NFC</span><span class="sat-surface__chip">Paper shards</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[07]</div>
+          <div class="sat-sh__label">OUTCOMES.TXT</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-outcomes">
+          <ul>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Shipped to production on both stores</div><div class="sat-outcomes__d">v1.3.0, Expo SDK 55, reproducible EAS builds.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Zero plaintext on disk after setup</div><div class="sat-outcomes__d">every record lives inside the v3 envelope; backups are opaque archives.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Backward compatible since day one</div><div class="sat-outcomes__d">v1 / v2 records and legacy PIN QR payloads still decrypt and migrate forward.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Offline-first, zero telemetry</div><div class="sat-outcomes__d">no analytics SDKs, no crash reporters phoning home, no accounts.</div></div></li>
+          </ul>
+          <div class="sat-learned">
+            <div class="sat-learned__k">// WHAT WE LEARNED</div>
+            <blockquote class="sat-learned__q">&ldquo;The hardest part wasn&rsquo;t the crypto. It was keeping the product honest about what it <em>couldn&rsquo;t</em> do — recover a lost passphrase, vouch for a shard you threw away, or know more than it&rsquo;s told.&rdquo;</blockquote>
+            <div class="sat-learned__cite">— satoshi-ltd engineering notes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT -->
+    <section class="sat-section--cs">
+      <div class="sat-cs-next">
+        <a href="../index.html#case-studies">
+          <div class="sat-cs-next__k">← BACK</div>
+          <div class="sat-cs-next__t">All case studies</div>
+          <div class="sat-cs-next__d">satoshi-ltd / case-studies</div>
+        </a>
+        <a href="clonara.html" class="next">
+          <div class="sat-cs-next__k accent">NEXT →</div>
+          <div class="sat-cs-next__t">Clonara</div>
+          <div class="sat-cs-next__d">case study · 02 / 03</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA + FOOTER -->
+    <section class="sat-section--footer-only">
+      <div class="sat-cs-cta">
+        <div>
+          <div class="sat-cs-cta__k">// have a brief like this one?</div>
+          <h3 class="sat-cs-cta__t">We take a handful of engagements a year. Talk to us.</h3>
+        </div>
+        <a href="#" data-sat-book class="sat-cta sat-cta--primary sat-cta--lg">./book_a_call <span aria-hidden="true">▸</span></a>
+      </div>
+      <div class="sat-cs-footer">
+        <div>© 2020–2026 SATOSHI LTD · CASE STUDY · SPLITPASS</div>
+        <div>CONSULTANCY · ZERO TELEMETRY BY DEFAULT</div>
+      </div>
+    </section>
+
+    <script src="../satoshi.js" defer></script>
+  </body>
+</html>

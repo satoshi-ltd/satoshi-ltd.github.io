@@ -4,476 +4,524 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
-    <title>
-      Satoshi Ltd. - Privacy-First Mobile App Development | Zero Telemetry Apps
-    </title>
-    <meta
-      name="description"
-      content="Satoshi Ltd. develops privacy-first mobile applications with zero telemetry. Based in Hong Kong, we create secure, open-source apps that respect your digital sovereignty. Clonara, Split/Pass, Money, Nutriva."
-    />
-    <meta
-      name="keywords"
-      content="privacy apps, zero telemetry, mobile development, cypherpunk, Hong Kong, digital sovereignty, secure apps, open source, cryptocurrency, password manager"
-    />
+    <title>Satoshi Ltd. · Privacy & AI Consultancy</title>
+    <meta name="description" content="A senior-only consultancy from Hong Kong. We design, architect and ship private software and on-device AI for teams that refuse to surveil their users." />
+    <meta name="keywords" content="privacy consultancy, on-device AI, zero telemetry, cryptography, threat modeling, Hong Kong, digital sovereignty, open source, local-first" />
     <meta name="author" content="Satoshi Ltd." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://satoshi-ltd.com" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://satoshi-ltd.com" />
-    <meta
-      property="og:title"
-      content="Satoshi Ltd. - Privacy-First Mobile App Development"
-    />
-    <meta
-      property="og:description"
-      content="We develop mobile applications with zero telemetry that respect your digital sovereignty. Code is Freedom. Privacy is Power."
-    />
+    <meta property="og:title" content="Satoshi Ltd. · Privacy & AI Consultancy" />
+    <meta property="og:description" content="Private software. Private AI. For hire. A consultancy for the sovereign stack." />
     <meta property="og:image" content="https://satoshi-ltd.com/og-image.png" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Satoshi Ltd." />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://satoshi-ltd.com" />
-    <meta
-      property="twitter:title"
-      content="Satoshi Ltd. - Privacy-First Mobile App Development"
-    />
-    <meta
-      property="twitter:description"
-      content="We develop mobile applications with zero telemetry that respect your digital sovereignty. Code is Freedom. Privacy is Power."
-    />
-    <meta
-      property="twitter:image"
-      content="https://satoshi-ltd.com/og-image.png"
-    />
+    <meta property="twitter:title" content="Satoshi Ltd. · Privacy & AI Consultancy" />
+    <meta property="twitter:description" content="Private software. Private AI. For hire. A consultancy for the sovereign stack." />
+    <meta property="twitter:image" content="https://satoshi-ltd.com/og-image.png" />
 
-    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Preload Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
-    /></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="satoshi.css" />
 
-    <!-- Particles.js -->
-    <link
-      rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
-      as="script"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
-      defer
-    ></script>
-
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- Schema.org structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Satoshi Ltd.",
-        "description": "Privacy-first mobile application development company specializing in zero telemetry apps",
+        "description": "Privacy & AI consultancy specialising in privacy engineering and on-device AI",
         "url": "https://satoshi-ltd.com",
         "logo": "https://satoshi-ltd.com/logo.png",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Unit 1133, 11/F, Peninsula Centre, No. 67 Mody Road, Kowloon",
           "addressLocality": "Hong Kong",
           "addressRegion": "Hong Kong SAR",
           "addressCountry": "HK"
         },
-        "foundingDate": "2024",
-        "industry": "Software Development",
-        "specialties": [
-          "Privacy-first development",
-          "Zero telemetry applications",
-          "Digital sovereignty",
-          "Open source software"
-        ],
+        "foundingDate": "2020",
         "sameAs": []
       }
     </script>
   </head>
   <body>
-    <!-- Skip to main content link -->
-    <!-- <a href="#main-content" class="skip-link">Skip to main content</a> -->
+    <nav class="sat-nav">
+      <a class="sat-nav__brand" href="index.html" aria-label="Satoshi Ltd.">
+        <span class="sat-dot" aria-hidden="true"></span>
+        <span class="sat-nav__name">SATOSHI<span class="muted">/LTD</span></span>
+      </a>
+      <div class="sat-nav__links">
+        <a href="#about"><span class="prompt">$</span> about</a>
+        <a href="#about"><span class="prompt">$</span> services</a>
+        <a href="#case-studies"><span class="prompt">$</span> case-studies</a>
+        <a href="#engage"><span class="prompt">$</span> engage</a>
+      </div>
+      <div class="sat-nav__ip">◉ 0.0.0.0 / no trackers active</div>
+    </nav>
 
-    <!-- Header -->
-    <header class="header" role="banner">
-      <div class="container">
-        <div class="header-content">
-          <a
-            href="index.html"
-            class="logo"
-            id="logo"
-            aria-label="Satoshi Ltd. homepage"
-            >satoshi</a
-          >
-          <nav class="nav" role="navigation" aria-label="Main navigation">
-            <a href="#home" aria-label="Go to home section">Home</a>
-            <a href="#about" aria-label="Go to about section">About</a>
-            <a href="#solutions" aria-label="Go to solutions section"
-              >Solutions</a
-            >
-            <a href="#philosophy" aria-label="Go to philosophy section"
-              >Philosophy</a
-            >
-            <a href="#contact" aria-label="Go to contact section">Contact</a>
-          </nav>
+    <!-- HERO -->
+    <section class="sat-section--hero">
+      <div class="sat-container" style="position:relative;z-index:1;">
+        <div class="sat-hero__eyebrow">[ SATOSHI · LTD ] ——— PRIVACY & AI CONSULTANCY · HONG KONG · EST. 2020</div>
+        <div class="sat-hero__prompt"><span class="user">client@engagement ~ $</span> cat brief.txt<span class="sat-cursor" aria-hidden="true"></span></div>
+        <h1 class="sat-h1">Private software.<br /><span class="accent">Private AI. For hire.</span></h1>
+        <div class="sat-hero__copy">
+          <p>A small consultancy from Hong Kong. We design, architect and ship private software and on-device AI for teams that refuse to surveil their users — from threat modeling to production release, with auditable receipts.</p>
+        </div>
+        <div class="sat-hero__ctas">
+          <a href="#" data-sat-book class="sat-cta sat-cta--primary">./book_a_call <span aria-hidden="true">▸</span></a>
+          <a href="#case-studies" class="sat-cta">--see-case-studies</a>
         </div>
       </div>
-    </header>
+      <div class="sat-status">
+        <div>UPTIME: <span class="v-ok">100%</span></div>
+        <div>TRACKERS: <span class="v-ok">0</span></div>
+        <div>TELEMETRY: <span class="v-ok">OFF</span></div>
+        <div>FREEDOM: <span class="v-ok">ON</span></div>
+      </div>
+    </section>
 
-    <!-- Matrix Rain Canvas -->
-    <canvas id="matrix-rain" aria-hidden="true" role="presentation"></canvas>
-
-    <!-- Matrix Message -->
-    <div
-      id="matrix-message"
-      class="matrix-message"
-      role="dialog"
-      aria-labelledby="matrix-title"
-      aria-hidden="true"
-    >
-      <h3 id="matrix-title">[!] MATRIX MODE ACTIVATED</h3>
-      <p>Welcome to the real world, Neo...</p>
-      <p>[>] <strong>Try hovering over section titles...</strong></p>
-      <p>Type <code>normal()</code> in console to return</p>
-    </div>
-
-    <main id="main-content" role="main">
-      <!-- Hero Section -->
-      <section id="home" class="hero" role="banner">
-        <div id="particles-js" aria-hidden="true"></div>
-        <div id="particles-layer-2" aria-hidden="true"></div>
-        <div id="particles-layer-3" aria-hidden="true"></div>
-
-        <div class="container">
-          <div class="hero-content">
-            <h1 class="hero-title">Code is Freedom.<br />Privacy is Power.</h1>
-            <p class="hero-subtitle">
-              // Zero telemetry. Maximum control. Your data, your rules.
-            </p>
-            <a
-              href="#solutions"
-              class="hero-cta"
-              aria-label="Explore our privacy-first mobile applications"
-              >Enter the Future</a
-            >
+    <!-- ABOUT -->
+    <section id="about" class="sat-section">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[00]</div>
+          <div class="sat-sh__label">README.md</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-about">
+          <div>
+            <div class="sat-about__kicker">// a consultancy, not a factory</div>
+            <h2 class="sat-h2">We partner with teams to build <span class="accent">software &amp; AI</span> that respects the humans using it.</h2>
+          </div>
+          <div class="sat-about__body">
+            <p>Satoshi Ltd. is a senior-only consultancy specialising in privacy engineering and on-device AI. We take on a handful of engagements a year — usually founders, security teams or regulated operators who can&rsquo;t afford a leak and won&rsquo;t ship surveillance.</p>
+            <p>Cryptography, product and engineering in one room. Threat model on day one; working build by week six; open-source reference implementation when the client agrees. We ship three of our own products to prove we eat the dog food.</p>
+            <ul class="sat-about__list">
+              <li><span class="num">[01]</span><span>Threat modeling &amp; cryptographic architecture</span></li>
+              <li><span class="num">[02]</span><span>On-device &amp; local-first AI systems</span></li>
+              <li><span class="num">[03]</span><span>Zero-knowledge protocols &amp; secure enclaves</span></li>
+              <li><span class="num">[04]</span><span>Security audits, code review, reproducible builds</span></li>
+            </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- About Story -->
-      <section id="about" class="story-section" aria-labelledby="about-title">
-        <div class="container">
-          <div class="story-content" data-scroll="story">
-            <div class="story-text">
-              <p class="story-subtitle">// From Hong Kong to the world</p>
-              <h2 id="about-title" class="story-title">
-                We <span id="action-word">build</span>
-                <span id="product-word">applications</span> that respect your
-                digital sovereignty.
-              </h2>
-              <p class="story-description">
-                At Satoshi Ltd., we believe that true technological revolution
-                begins when users regain total control of their data. Inspired
-                by the cypherpunk principles of the 90s, we develop mobile
-                applications that work entirely on your device.
-                <br /><br />
-                We don't collect. We don't track. We don't sell. Your
-                information stays where it belongs: with you. Every line of code
-                we write prioritizes your privacy, security, and digital
-                autonomy.
-              </p>
+    <!-- CASE STUDIES -->
+    <section id="case-studies" class="sat-section">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[01]</div>
+          <div class="sat-sh__label">CASE_STUDIES/</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <p class="sat-sub">Between client engagements we ship our own software. Three products, each a proof-of-concept for the kind of thing we build for hire.</p>
+
+        <div class="sat-products">
+          <!-- SplitPass -->
+          <article class="sat-product">
+            <div class="sat-product__visual">
+              <svg viewBox="0 0 240 480" width="240" height="480" aria-hidden="true" style="display:block;overflow:visible">
+                <defs><clipPath id="clip-sp"><rect x="12" y="12" width="216" height="456" rx="28" /></clipPath></defs>
+                <rect x="4" y="4" width="232" height="472" rx="34" fill="#000" stroke="#ffc431" stroke-opacity="0.25" />
+                <rect x="12" y="12" width="216" height="456" rx="28" fill="#0a0a0a" />
+                <rect x="92" y="20" width="56" height="6" rx="3" fill="#000" />
+                <g clip-path="url(#clip-sp)">
+                  <text x="28" y="60" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10">SPLITPASS · VAULT</text>
+                  <text x="28" y="90" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="14" font-weight="600">github.com</text>
+                  <text x="28" y="108" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10">Shamir 2-of-3</text>
+
+                  <g transform="translate(28 140)">
+                    <rect width="184" height="66" rx="10" fill="none" stroke="#ffc431" />
+                    <text x="14" y="20" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">SHARD 1 / 3</text>
+                    <text x="14" y="42" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="11">0xA4·C9·7F··</text>
+                    <text x="14" y="56" fill="#ffc431" font-family="ui-monospace, monospace" font-size="9">✓ on device</text>
+                    <g transform="translate(140 14)">
+                      <rect x="0" y="0" width="5" height="5" fill="#e8e6df"/><rect x="12" y="0" width="5" height="5" fill="#e8e6df"/><rect x="18" y="0" width="5" height="5" fill="#e8e6df"/><rect x="30" y="0" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="6" y="6" width="5" height="5" fill="#e8e6df"/><rect x="18" y="6" width="5" height="5" fill="#e8e6df"/><rect x="24" y="6" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="0" y="12" width="5" height="5" fill="#e8e6df"/><rect x="12" y="12" width="5" height="5" fill="#e8e6df"/><rect x="24" y="12" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="6" y="18" width="5" height="5" fill="#e8e6df"/><rect x="18" y="18" width="5" height="5" fill="#e8e6df"/><rect x="30" y="18" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="0" y="24" width="5" height="5" fill="#e8e6df"/><rect x="12" y="24" width="5" height="5" fill="#e8e6df"/><rect x="18" y="24" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="6" y="30" width="5" height="5" fill="#e8e6df"/><rect x="18" y="30" width="5" height="5" fill="#e8e6df"/><rect x="24" y="30" width="5" height="5" fill="#e8e6df"/>
+                    </g>
+                  </g>
+                  <g transform="translate(28 222)">
+                    <rect width="184" height="66" rx="10" fill="none" stroke="#ffc431" />
+                    <text x="14" y="20" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">SHARD 2 / 3</text>
+                    <text x="14" y="42" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="11">0x12·E8·B2··</text>
+                    <text x="14" y="56" fill="#ffc431" font-family="ui-monospace, monospace" font-size="9">✓ on device</text>
+                    <g transform="translate(140 14)">
+                      <rect x="6" y="0" width="5" height="5" fill="#e8e6df"/><rect x="18" y="0" width="5" height="5" fill="#e8e6df"/><rect x="24" y="0" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="0" y="6" width="5" height="5" fill="#e8e6df"/><rect x="12" y="6" width="5" height="5" fill="#e8e6df"/><rect x="30" y="6" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="6" y="12" width="5" height="5" fill="#e8e6df"/><rect x="18" y="12" width="5" height="5" fill="#e8e6df"/><rect x="24" y="12" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="0" y="18" width="5" height="5" fill="#e8e6df"/><rect x="12" y="18" width="5" height="5" fill="#e8e6df"/><rect x="24" y="18" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="6" y="24" width="5" height="5" fill="#e8e6df"/><rect x="18" y="24" width="5" height="5" fill="#e8e6df"/><rect x="30" y="24" width="5" height="5" fill="#e8e6df"/>
+                      <rect x="0" y="30" width="5" height="5" fill="#e8e6df"/><rect x="12" y="30" width="5" height="5" fill="#e8e6df"/><rect x="24" y="30" width="5" height="5" fill="#e8e6df"/>
+                    </g>
+                  </g>
+                  <g transform="translate(28 304)">
+                    <rect width="184" height="66" rx="10" fill="none" stroke="#7a7873" stroke-opacity="0.35" stroke-dasharray="4 4" />
+                    <text x="14" y="20" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">SHARD 3 / 3</text>
+                    <text x="14" y="42" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="11">0x··········</text>
+                    <text x="14" y="56" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">offline · paper</text>
+                  </g>
+
+                  <rect x="28" y="410" width="184" height="36" rx="8" fill="#ffc431" />
+                  <text x="120" y="433" fill="#0a0a0a" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">RECONSTRUCT ▸</text>
+                </g>
+              </svg>
             </div>
-            <div class="story-visual">
-              <div
-                class="solution-visual"
-                style="margin: 0 auto"
-                aria-hidden="true"
-              >
-                [>]
+            <div class="sat-product__body">
+              <div class="sat-product__tag">
+                <span class="idx">[01]</span>
+                <span class="path">./PRODUCTS/SPLITPASS</span>
+              </div>
+              <h3 class="sat-product__name">SplitPass<span class="accent">.</span></h3>
+              <div class="sat-product__tagline">// High-value secrets, split so no single place can lose them</div>
+              <p class="sat-product__short">A device-held vault for passwords, payment cards and BIP39 seed phrases — with a shard-based recovery system so a single compromised device, backup or custodian reveals nothing.</p>
+              <p class="sat-product__long">Local-first by construction: the master passphrase never leaves RAM, the vault lives on the device, and backup archives carry no SplitPass branding before decryption. Legacy PIN-era QR payloads still decrypt — upgrades never orphan a user.</p>
+              <ul class="sat-product__features">
+                <li><span class="caret">▸</span><span>Passwords, cards, BIP39 seed phrases</span></li>
+                <li><span class="caret">▸</span><span>Argon2id + AES-GCM (opaque v3 envelope)</span></li>
+                <li><span class="caret">▸</span><span>Shard recovery via QR &amp; NFC</span></li>
+                <li><span class="caret">▸</span><span>Companion browser extension</span></li>
+              </ul>
+              <div class="sat-product__footer">
+                <div>
+                  <div class="sat-product__metric-label">KEY METRIC</div>
+                  <div class="sat-product__metric-value">0</div>
+                  <div class="sat-product__metric-note">single points of failure</div>
+                </div>
+                <div class="sat-product__divider"></div>
+                <a href="case-studies/splitpass.html" class="sat-cta">--read-case-study</a>
               </div>
             </div>
+          </article>
+
+          <!-- Clonara -->
+          <article class="sat-product sat-product--flip">
+            <div class="sat-product__visual">
+              <svg viewBox="0 0 240 480" width="240" height="480" aria-hidden="true" style="display:block;overflow:visible">
+                <defs><clipPath id="clip-cl"><rect x="12" y="12" width="216" height="456" rx="28" /></clipPath></defs>
+                <rect x="4" y="4" width="232" height="472" rx="34" fill="#000" stroke="#ffc431" stroke-opacity="0.25" />
+                <rect x="12" y="12" width="216" height="456" rx="28" fill="#0a0a0a" />
+                <rect x="92" y="20" width="56" height="6" rx="3" fill="#000" />
+                <g clip-path="url(#clip-cl)">
+                  <text x="28" y="60" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10">CLONARA · PERSONA</text>
+                  <text x="28" y="92" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="14" font-weight="600">abby.persona</text>
+                  <g transform="translate(72 115)">
+                    <circle cx="48" cy="48" r="46" fill="none" stroke="#ffc431" stroke-opacity="0.3" />
+                    <circle cx="48" cy="48" r="34" fill="none" stroke="#ffc431" stroke-opacity="0.6" stroke-dasharray="2 3" />
+                    <circle cx="48" cy="48" r="22" fill="#ffc431" />
+                    <text x="48" y="52" text-anchor="middle" fill="#0a0a0a" font-family="ui-monospace, monospace" font-size="16" font-weight="700">◉</text>
+                  </g>
+                  <g transform="translate(28 240)">
+                    <rect width="150" height="40" rx="10" fill="#1a1a1a" />
+                    <text x="12" y="18" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">USER</text>
+                    <text x="12" y="32" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">how&apos;s the essay going?</text>
+                  </g>
+                  <g transform="translate(50 292)">
+                    <rect width="162" height="54" rx="10" fill="#ffc431" fill-opacity="0.15" stroke="#ffc431" stroke-opacity="0.4" />
+                    <text x="12" y="18" fill="#ffc431" font-family="ui-monospace, monospace" font-size="9">PERSONA · GROUNDED</text>
+                    <text x="12" y="32" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">grandma&apos;s kitchen,</text>
+                    <text x="12" y="44" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">summer of &apos;94. lemons.</text>
+                  </g>
+                  <g transform="translate(28 360)">
+                    <rect width="184" height="24" rx="6" fill="none" stroke="#7a7873" stroke-opacity="0.3" />
+                    <text x="10" y="16" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">◎ 3 memories · 1 invite · live</text>
+                  </g>
+                  <rect x="28" y="410" width="184" height="36" rx="8" fill="none" stroke="#ffc431" />
+                  <text x="120" y="433" fill="#ffc431" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">ADD A MEMORY</text>
+                </g>
+              </svg>
+            </div>
+            <div class="sat-product__body">
+              <div class="sat-product__tag">
+                <span class="idx">[02]</span>
+                <span class="path">./PRODUCTS/CLONARA</span>
+              </div>
+              <h3 class="sat-product__name">Clonara<span class="accent">.</span></h3>
+              <div class="sat-product__tagline">// A living Persona, grown from your memories</div>
+              <p class="sat-product__short">A mobile Persona seeded by six questions and grown with the memories you choose to feed it. Share access only by revocable invite — no public profile, no scraping.</p>
+              <p class="sat-product__long">Capture memories as text, dictation or journals. Each chat is grounded in a slice of what you actually told it — so the replies sound like you, not like a stranger with your haircut. iOS, Android, 15 locales, RevenueCat billing.</p>
+              <ul class="sat-product__features">
+                <li><span class="caret">▸</span><span>Six-question Persona seed (tone · warmth · voice)</span></li>
+                <li><span class="caret">▸</span><span>Memories as ground-truth, attached to every reply</span></li>
+                <li><span class="caret">▸</span><span>Per-recipient invite tokens, revocable in one tap</span></li>
+                <li><span class="caret">▸</span><span>15 locales incl. RTL · offline-aware client</span></li>
+              </ul>
+              <div class="sat-product__footer">
+                <div>
+                  <div class="sat-product__metric-label">KEY METRIC</div>
+                  <div class="sat-product__metric-value">15</div>
+                  <div class="sat-product__metric-note">locales · shipped day one</div>
+                </div>
+                <div class="sat-product__divider"></div>
+                <a href="case-studies/clonara.html" class="sat-cta">--read-case-study</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Money -->
+          <article class="sat-product">
+            <div class="sat-product__visual">
+              <svg viewBox="0 0 240 480" width="240" height="480" aria-hidden="true" style="display:block;overflow:visible">
+                <defs><clipPath id="clip-mo"><rect x="12" y="12" width="216" height="456" rx="28" /></clipPath></defs>
+                <rect x="4" y="4" width="232" height="472" rx="34" fill="#000" stroke="#ffc431" stroke-opacity="0.25" />
+                <rect x="12" y="12" width="216" height="456" rx="28" fill="#0a0a0a" />
+                <rect x="92" y="20" width="56" height="6" rx="3" fill="#000" />
+                <g clip-path="url(#clip-mo)">
+                  <text x="28" y="60" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10">MÔNEY · APRIL</text>
+                  <text x="28" y="96" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="26" font-weight="700">€ 4,218</text>
+                  <text x="28" y="112" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">3 accounts · € · £ · $</text>
+                  <g transform="translate(28 135)">
+                    <polyline fill="none" stroke="#ffc431" stroke-width="1.5" points="0,40 18,36 36,30 54,34 72,26 90,22 108,30 126,18 144,14 162,20 180,10" />
+                    <polyline fill="none" stroke="#7a7873" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 3" points="0,46 18,44 36,42 54,42 72,40 90,38 108,36 126,34 144,32 162,30 180,28" />
+                  </g>
+                  <g transform="translate(28 210)">
+                    <rect width="184" height="34" rx="8" fill="#1a1a1a" />
+                    <text x="14" y="15" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">Rent · scheduled</text>
+                    <text x="14" y="28" fill="#7a7873" font-family="ui-monospace, monospace" font-size="8">apr 9</text>
+                    <text x="170" y="21" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10" text-anchor="end" font-weight="600">— € 950</text>
+                  </g>
+                  <g transform="translate(28 252)">
+                    <rect width="184" height="34" rx="8" fill="#1a1a1a" />
+                    <text x="14" y="15" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">Coffee · Madrid</text>
+                    <text x="14" y="28" fill="#7a7873" font-family="ui-monospace, monospace" font-size="8">apr 10</text>
+                    <text x="170" y="21" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10" text-anchor="end" font-weight="600">— € 2.40</text>
+                  </g>
+                  <g transform="translate(28 294)">
+                    <rect width="184" height="34" rx="8" fill="#1a1a1a" />
+                    <text x="14" y="15" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">Freelance · Lisbon</text>
+                    <text x="14" y="28" fill="#7a7873" font-family="ui-monospace, monospace" font-size="8">apr 11</text>
+                    <text x="170" y="21" fill="#ffc431" font-family="ui-monospace, monospace" font-size="10" text-anchor="end" font-weight="600">+ € 1,200</text>
+                  </g>
+                  <g transform="translate(28 336)">
+                    <rect width="184" height="34" rx="8" fill="#1a1a1a" />
+                    <text x="14" y="15" fill="#e8e6df" font-family="ui-monospace, monospace" font-size="10">Groceries · Paris</text>
+                    <text x="14" y="28" fill="#7a7873" font-family="ui-monospace, monospace" font-size="8">apr 12</text>
+                    <text x="170" y="21" fill="#7a7873" font-family="ui-monospace, monospace" font-size="10" text-anchor="end" font-weight="600">— € 58.10</text>
+                  </g>
+                  <text x="28" y="408" fill="#7a7873" font-family="ui-monospace, monospace" font-size="9">◎ on-device · airplane-mode ready</text>
+                </g>
+              </svg>
+            </div>
+            <div class="sat-product__body">
+              <div class="sat-product__tag">
+                <span class="idx">[03]</span>
+                <span class="path">./PRODUCTS/MONEY</span>
+              </div>
+              <h3 class="sat-product__name">Money<span class="accent">.</span></h3>
+              <div class="sat-product__tagline">// A ledger that never phones home</div>
+              <p class="sat-product__short">Local-first personal finance. AsyncStorage is the database, JSON files are the backup, and the insights engine runs on device — no bank linking, no scraping, no telemetry.</p>
+              <p class="sat-product__long">Multi-currency accounts, scheduled transactions, and an on-device insights engine (trends, pace, anomalies). Three opt-in network paths total: FX rates, RevenueCat, optional lead email. Everything else stays on the phone.</p>
+              <ul class="sat-product__features">
+                <li><span class="caret">▸</span><span>AsyncStorage-only persistence</span></li>
+                <li><span class="caret">▸</span><span>Scheduled txs · 90-day sync window</span></li>
+                <li><span class="caret">▸</span><span>On-device insights · no spinners</span></li>
+                <li><span class="caret">▸</span><span>JSON backups the user owns</span></li>
+              </ul>
+              <div class="sat-product__footer">
+                <div>
+                  <div class="sat-product__metric-label">KEY METRIC</div>
+                  <div class="sat-product__metric-value">3</div>
+                  <div class="sat-product__metric-note">opt-in network paths, total</div>
+                </div>
+                <div class="sat-product__divider"></div>
+                <a href="case-studies/money.html" class="sat-cta">--read-case-study</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section class="sat-section">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[02]</div>
+          <div class="sat-sh__label">PRINCIPLES.CONF</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-principles">
+          <div class="sat-principle">
+            <div class="sat-principle__head">
+              <div class="sat-principle__glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a8 8 0 0 1 16 0v6H4z"/><circle cx="12" cy="10" r="4"/></svg>
+              </div>
+              <div class="sat-principle__idx">01 / 06</div>
+            </div>
+            <h3 class="sat-principle__name">Privacy by Design</h3>
+            <p class="sat-principle__text">Privacy isn&rsquo;t a feature. It&rsquo;s the foundation — everything else is built on top.</p>
+          </div>
+
+          <div class="sat-principle">
+            <div class="sat-principle__head">
+              <div class="sat-principle__glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+              <div class="sat-principle__idx">02 / 06</div>
+            </div>
+            <h3 class="sat-principle__name">User Sovereignty</h3>
+            <p class="sat-principle__text">You own your data, your device, and your decisions. We just make the tools.</p>
+          </div>
+
+          <div class="sat-principle">
+            <div class="sat-principle__head">
+              <div class="sat-principle__glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
+              </div>
+              <div class="sat-principle__idx">03 / 06</div>
+            </div>
+            <h3 class="sat-principle__name">Security First</h3>
+            <p class="sat-principle__text">Threat-modeled from commit zero. No surveillance disguised as telemetry.</p>
+          </div>
+
+          <div class="sat-principle">
+            <div class="sat-principle__head">
+              <div class="sat-principle__glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>
+              </div>
+              <div class="sat-principle__idx">04 / 06</div>
+            </div>
+            <h3 class="sat-principle__name">Open Source</h3>
+            <p class="sat-principle__text">Auditable code. Reproducible builds. Trust, but verify.</p>
+          </div>
+
+          <div class="sat-principle">
+            <div class="sat-principle__head">
+              <div class="sat-principle__glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V8a5 5 0 1 1 10 0v3"/><rect x="5" y="11" width="14" height="9" rx="2"/></svg>
+              </div>
+              <div class="sat-principle__idx">05 / 06</div>
+            </div>
+            <h3 class="sat-principle__name">Zero Knowledge</h3>
+            <p class="sat-principle__text">What we don&rsquo;t know can&rsquo;t be subpoenaed, leaked, or sold.</p>
+          </div>
+
+          <div class="sat-principle">
+            <div class="sat-principle__head">
+              <div class="sat-principle__glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+              </div>
+              <div class="sat-principle__idx">06 / 06</div>
+            </div>
+            <h3 class="sat-principle__name">Digital Sovereignty</h3>
+            <p class="sat-principle__text">Technology should liberate, not enslave. Tools for independence, not extraction.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Solutions Showcase -->
-      <section
-        id="solutions"
-        class="solutions-showcase"
-        aria-labelledby="solutions-title"
-      >
-        <div class="container">
-          <h2 id="solutions-title" class="showcase-title">Our Solutions</h2>
-
-          <div class="solution-item" data-scroll="solution">
-            <div class="solution-content">
+    <!-- ENGAGE -->
+    <section id="engage" class="sat-section">
+      <div class="sat-container">
+        <div class="sat-sh">
+          <div class="sat-sh__num">[03]</div>
+          <div class="sat-sh__label">ENGAGE/</div>
+          <div class="sat-sh__rule"></div>
+        </div>
+        <div class="sat-engage">
+          <div class="sat-engage__head">
+            <div>
+              <div class="sat-engage__kicker">// now accepting q3 engagements</div>
+              <h3 class="sat-engage__title">Have a brief?<br />Let&rsquo;s scope it.</h3>
+              <div class="sat-engage__sub">Free 30-minute intro. NDAs on request. PGP welcome.</div>
+            </div>
+            <div class="sat-engage__ctas">
+              <a href="#" data-sat-book class="sat-cta sat-cta--primary">./book_a_call <span aria-hidden="true">▸</span></a>
+              <a href="mailto:hello@satoshi-ltd.com" class="sat-cta">hello@satoshi-ltd.com</a>
+            </div>
+          </div>
+          <div class="sat-engage__paths">
+            <div class="sat-engage__path">
+              <div class="sat-engage__badge">D</div>
               <div>
-                <div class="solution-visual" aria-hidden="true">C</div>
-                <h3 class="solution-name">Clonara</h3>
-                <p class="solution-description">
-                  Ethical alternative to personality cloning. Create
-                  conversational avatars while always maintaining your authority
-                  and total control over the generated AI. Zero data uploading,
-                  complete local processing.
-                </p>
-              </div>
-              <div></div>
-            </div>
-          </div>
-
-          <div class="solution-item" data-scroll="solution">
-            <div class="solution-content">
-              <div></div>
-              <div>
-                <div class="solution-visual" aria-hidden="true">S</div>
-                <h3 class="solution-name">Split/Pass</h3>
-                <p class="solution-description">
-                  Advanced secret splitting system using Shamir's cryptographic
-                  algorithms. Split your passwords into 3 shards, requires
-                  minimum 2 to reconstruct. Compatible with QR codes and NFC.
-                  Military-grade security.
-                </p>
+                <div class="sat-engage__path-title">DISCOVERY <span class="d">· 1 week</span></div>
+                <div class="sat-engage__path-desc">threat model, scope, estimate</div>
               </div>
             </div>
-          </div>
-
-          <div class="solution-item" data-scroll="solution">
-            <div class="solution-content">
+            <div class="sat-engage__path">
+              <div class="sat-engage__badge">D</div>
               <div>
-                <div class="solution-visual" aria-hidden="true">M</div>
-                <h3 class="solution-name">Money</h3>
-                <p class="solution-description">
-                  Multi-currency and crypto-friendly personal finance manager.
-                  Track Bitcoin, Ethereum, and traditional currencies. Helps you
-                  become aware of your spending patterns and develop intelligent
-                  saving habits.
-                </p>
+                <div class="sat-engage__path-title">DELIVERY <span class="d">· 6–12 weeks</span></div>
+                <div class="sat-engage__path-desc">architecture, build, audit, ship</div>
               </div>
-              <div></div>
             </div>
-          </div>
-
-          <div class="solution-item" data-scroll="solution">
-            <div class="solution-content">
-              <div></div>
+            <div class="sat-engage__path">
+              <div class="sat-engage__badge">R</div>
               <div>
-                <div class="solution-visual" aria-hidden="true">N</div>
-                <h3 class="solution-name">Nutriva</h3>
-                <p class="solution-description">
-                  Nutritional analysis through photography using local AI
-                  processing. Identifies ingredients, calculates nutritional
-                  values and generates healthier recipe alternatives. All
-                  processing happens on your device.
-                </p>
+                <div class="sat-engage__path-title">RETAINER <span class="d">· ongoing</span></div>
+                <div class="sat-engage__path-desc">on-call crypto &amp; security reviews</div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Philosophy Section -->
-      <section
-        id="philosophy"
-        class="philosophy"
-        aria-labelledby="philosophy-title"
-      >
-        <div class="container">
-          <div class="philosophy-content">
-            <h2 id="philosophy-title" class="philosophy-title">
-              Our Philosophy
-            </h2>
-            <p class="story-description">
-              The principles that guide every line of code we write, rooted in
-              cypherpunk ideals and digital rights.
-            </p>
-
-            <div class="philosophy-grid">
-              <article
-                class="philosophy-item"
-                data-scroll="philosophy"
-                tabindex="0"
-                role="button"
-                aria-label="Learn more about Privacy by Design"
-              >
-                <div class="philosophy-icon" aria-hidden="true">[#]</div>
-                <h3 class="philosophy-name">Privacy by Design</h3>
-                <p
-                  class="philosophy-description"
-                  data-original="Privacy isn't an optional feature, it's the fundamental architecture of every application we build."
-                  data-alt="Zero data collection. Zero tracking. Zero compromise. Your digital life belongs to you alone, not corporations."
-                >
-                  Privacy isn't an optional feature, it's the fundamental
-                  architecture of every application we build.
-                </p>
-              </article>
-              <article
-                class="philosophy-item"
-                data-scroll="philosophy"
-                tabindex="0"
-                role="button"
-                aria-label="Learn more about User Sovereignty"
-              >
-                <div class="philosophy-icon" aria-hidden="true">[*]</div>
-                <h3 class="philosophy-name">User Sovereignty</h3>
-                <p
-                  class="philosophy-description"
-                  data-original="You are the absolute owner of your data, decisions and digital experience."
-                  data-alt="No corporate overlords. No algorithmic manipulation. Pure digital autonomy and self-determination in the digital realm."
-                >
-                  You are the absolute owner of your data, decisions and digital
-                  experience.
-                </p>
-              </article>
-              <article
-                class="philosophy-item"
-                data-scroll="philosophy"
-                tabindex="0"
-                role="button"
-                aria-label="Learn more about Security First"
-              >
-                <div class="philosophy-icon" aria-hidden="true">[+]</div>
-                <h3 class="philosophy-name">Security First</h3>
-                <p
-                  class="philosophy-description"
-                  data-original="We implement security best practices from the very first commit to deployment."
-                  data-alt="Military-grade encryption. Comprehensive threat modeling. Regular penetration testing. Security is never an afterthought."
-                >
-                  We implement security best practices from the very first
-                  commit to deployment.
-                </p>
-              </article>
-              <article
-                class="philosophy-item"
-                data-scroll="philosophy"
-                tabindex="0"
-                role="button"
-                aria-label="Learn more about Open Source"
-              >
-                <div class="philosophy-icon" aria-hidden="true">[~]</div>
-                <h3 class="philosophy-name">Open Source</h3>
-                <p
-                  class="philosophy-description"
-                  data-original="Transparency is fundamental. Our code is open for audit and community review."
-                  data-alt="Trust through verification. Every algorithm exposed. No hidden backdoors, no secret surveillance functions."
-                >
-                  Transparency is fundamental. Our code is open for audit and
-                  community review.
-                </p>
-              </article>
-              <article
-                class="philosophy-item"
-                data-scroll="philosophy"
-                tabindex="0"
-                role="button"
-                aria-label="Learn more about Zero Knowledge"
-              >
-                <div class="philosophy-icon" aria-hidden="true">[&]</div>
-                <h3 class="philosophy-name">Zero Knowledge</h3>
-                <p
-                  class="philosophy-description"
-                  data-original="Advanced cryptographic techniques ensure even we cannot access your sensitive information."
-                  data-alt="Cryptographic proofs without revealing secrets. What we don't know about you can never hurt you."
-                >
-                  Advanced cryptographic techniques ensure even we cannot access
-                  your sensitive information.
-                </p>
-              </article>
-              <article
-                class="philosophy-item"
-                data-scroll="philosophy"
-                tabindex="0"
-                role="button"
-                aria-label="Learn more about Digital Sovereignty"
-              >
-                <div class="philosophy-icon" aria-hidden="true">[%]</div>
-                <h3 class="philosophy-name">Digital Sovereignty</h3>
-                <p
-                  class="philosophy-description"
-                  data-original="Technology should liberate, not enslave. We build tools for digital independence."
-                  data-alt="Break free from Big Tech surveillance capitalism. Reclaim your digital rights. Technology for human liberation."
-                >
-                  Technology should liberate, not enslave. We build tools for
-                  digital independence.
-                </p>
-              </article>
+    <!-- FOOTER -->
+    <footer class="sat-footer">
+      <div class="sat-container">
+        <div class="sat-footer__cols">
+          <div>
+            <div class="sat-footer__brand-line">
+              <span class="sat-dot" aria-hidden="true"></span>
+              <span class="sat-footer__brand-name">SATOSHI<span class="muted">/LTD</span></span>
+            </div>
+            <p class="sat-footer__desc">A private-software consultancy based in Hong Kong SAR. We build for teams that refuse to surveil their users.</p>
+            <address class="sat-footer__addr">
+              Unit 1133, 11/F, Peninsula Centre<br />
+              No. 67 Mody Road, Kowloon<br />
+              Hong Kong SAR
+            </address>
+          </div>
+          <div class="sat-footer__col">
+            <h4>SERVICES</h4>
+            <div class="sat-footer__links">
+              <a href="#engage">Discovery</a>
+              <a href="#engage">Delivery</a>
+              <a href="#engage">Retainer</a>
+              <a href="#engage">Audits</a>
+            </div>
+          </div>
+          <div class="sat-footer__col">
+            <h4>CASE STUDIES</h4>
+            <div class="sat-footer__links">
+              <a href="case-studies/splitpass.html">SplitPass</a>
+              <a href="case-studies/clonara.html">Clonara</a>
+              <a href="case-studies/money.html">Money</a>
+            </div>
+          </div>
+          <div class="sat-footer__col">
+            <h4>CONTACT</h4>
+            <div class="sat-footer__links">
+              <a href="mailto:hello@satoshi-ltd.com">hello@satoshi-ltd.com</a>
+              <a href="#">Signal @satoshiltd</a>
+              <a href="#">Matrix @satoshi:matrix.org</a>
+              <a href="#">PGP 0x1234…CDEF</a>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Contact/Footer Section -->
-      <footer id="contact" class="footer" role="contentinfo">
-        <div class="container">
-          <div class="footer-content" data-scroll="footer">
-            <div class="footer-section">
-              <h3 class="footer-title">Satoshi Ltd.</h3>
-              <p class="footer-description">
-                Privacy-first development studio based in Hong Kong SAR.<br />
-                Building the future, one zero-telemetry app at a time.
-              </p>
-              <address class="footer-contact">
-                <strong>Headquarters:</strong><br />
-                Unit 1133, 11/F, Peninsula Centre<br />
-                No. 67 Mody Road<br />
-                Kowloon, Hong Kong
-              </address>
-            </div>
-            <div class="footer-section">
-              <h3>Contact</h3>
-              <div class="footer-contact">
-                <p><strong>Email:</strong> hello@satoshi-ltd.com</p>
-                <p><strong>Signal:</strong> @satoshiltd</p>
-                <p><strong>Matrix:</strong> @satoshi:matrix.org</p>
-                <p><strong>PGP:</strong> 0x1234567890ABCDEF</p>
-              </div>
-            </div>
-            <div class="footer-section">
-              <h3>Links</h3>
-              <div class="footer-links">
-                <a href="privacy.html" aria-label="Read our privacy policy"
-                  >Privacy Policy</a
-                >
-                <a href="terms.html" aria-label="Read our terms of service"
-                  >Terms of Service</a
-                >
-                <a href="security.html" aria-label="View our security practices"
-                  >Security</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="footer-bottom">
-            <p>
-              &copy; 2025 Satoshi Ltd. All rights reserved. Built with zero
-              telemetry.
-            </p>
-          </div>
+        <div class="sat-footer__bottom">
+          <div>© 2020–2026 SATOSHI LTD · ALL RIGHTS RESERVED</div>
+          <div>CONSULTANCY · ZERO TELEMETRY BY DEFAULT · <span class="accent">READ OUR CODE ↗</span></div>
+          <div><a href="privacy.html">PRIVACY</a> · <a href="terms.html">TERMS</a> · <a href="security.html">SECURITY</a></div>
         </div>
-      </footer>
-    </main>
+      </div>
+    </footer>
 
-    <!-- Main JavaScript -->
-    <script src="scripts.js"></script>
+    <script src="satoshi.js" defer></script>
   </body>
 </html>
