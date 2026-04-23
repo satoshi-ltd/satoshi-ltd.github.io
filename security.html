@@ -3,76 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO Meta Tags -->
-    <title>
-      Security Practices - Satoshi Ltd. | Military-Grade Security & Zero
-      Knowledge
-    </title>
-    <meta
-      name="description"
-      content="Security practices and architecture at Satoshi Ltd. Military-grade encryption, zero knowledge proofs, threat modeling, and responsible disclosure program."
-    />
-    <meta
-      name="keywords"
-      content="security practices, military-grade encryption, zero knowledge, threat modeling, security audit, responsible disclosure"
-    />
+    <title>Security Practices · Satoshi Ltd.</title>
+    <meta name="description" content="Security architecture at Satoshi Ltd. Zero-knowledge design, audited cryptography, responsible disclosure." />
     <meta name="author" content="Satoshi Ltd." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://satoshi-ltd.com/security.html" />
-
-    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap"
-    /></noscript>
-
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="satoshi.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header class="header" role="banner">
-      <div class="container">
-        <div class="header-content">
-          <a href="index.html" class="logo" aria-label="Satoshi Ltd. homepage"
-            >satoshi</a
-          >
-          <nav class="nav" role="navigation" aria-label="Main navigation">
-            <a href="index.html" aria-label="Go to homepage">Home</a>
-            <a href="index.html#about" aria-label="Go to about section"
-              >About</a
-            >
-            <a href="index.html#solutions" aria-label="Go to solutions section"
-              >Solutions</a
-            >
-            <a
-              href="index.html#philosophy"
-              aria-label="Go to philosophy section"
-              >Philosophy</a
-            >
-            <a href="index.html#contact" aria-label="Go to contact section"
-              >Contact</a
-            >
-          </nav>
-        </div>
+    <nav class="sat-nav">
+      <a class="sat-nav__brand" href="index.html" aria-label="Satoshi Ltd.">
+        <span class="sat-dot" aria-hidden="true"></span>
+        <span class="sat-nav__name">SATOSHI<span class="muted">/LTD</span><span class="sep">/</span><span class="crumb">security</span></span>
+      </a>
+      <div class="sat-nav__links">
+        <a href="index.html#about"><span class="prompt">$</span> about</a>
+        <a href="index.html#case-studies"><span class="prompt">$</span> case-studies</a>
+        <a href="index.html#engage"><span class="prompt">$</span> engage</a>
       </div>
-    </header>
+    </nav>
 
-    <main id="main-content" role="main" class="content-page">
+    <main id="main-content" role="main" class="sat-legal">
       <!-- Content Header -->
       <section class="content-header">
         <div class="container">
@@ -655,57 +611,56 @@
       </section>
     </main>
 
-    <!-- Contact/Footer Section -->
-    <footer id="contact" class="footer" role="contentinfo">
-      <div class="container">
-        <div class="footer-content" data-scroll="footer">
-          <div class="footer-section">
-            <h3 class="footer-title">Satoshi Ltd.</h3>
-            <p class="footer-description">
-              Privacy-first development studio based in Hong Kong SAR.<br />
-              Building the future, one zero-telemetry app at a time.
-            </p>
-            <address class="footer-contact">
-              <strong>Headquarters:</strong><br />
+    <footer class="sat-footer">
+      <div class="sat-container">
+        <div class="sat-footer__cols">
+          <div>
+            <div class="sat-footer__brand-line">
+              <span class="sat-dot" aria-hidden="true"></span>
+              <span class="sat-footer__brand-name">SATOSHI<span class="muted">/LTD</span></span>
+            </div>
+            <p class="sat-footer__desc">A private-software consultancy based in Hong Kong SAR. We build for teams that refuse to surveil their users.</p>
+            <address class="sat-footer__addr">
               Unit 1133, 11/F, Peninsula Centre<br />
-              No. 67 Mody Road<br />
-              Kowloon, Hong Kong
+              No. 67 Mody Road, Kowloon<br />
+              Hong Kong SAR
             </address>
           </div>
-          <div class="footer-section">
-            <h3>Contact</h3>
-            <div class="footer-contact">
-              <p><strong>Email:</strong> hello@satoshi-ltd.com</p>
-              <p><strong>Signal:</strong> @satoshiltd</p>
-              <p><strong>Matrix:</strong> @satoshi:matrix.org</p>
-              <p><strong>PGP:</strong> 0x1234567890ABCDEF</p>
+          <div class="sat-footer__col">
+            <h4>SERVICES</h4>
+            <div class="sat-footer__links">
+              <a href="index.html#engage">Discovery</a>
+              <a href="index.html#engage">Delivery</a>
+              <a href="index.html#engage">Retainer</a>
+              <a href="index.html#engage">Audits</a>
             </div>
           </div>
-          <div class="footer-section">
-            <h3>Links</h3>
-            <div class="footer-links">
-              <a href="privacy.html" aria-label="Read our privacy policy"
-                >Privacy Policy</a
-              >
-              <a href="terms.html" aria-label="Read our terms of service"
-                >Terms of Service</a
-              >
-              <a href="security.html" aria-label="View our security practices"
-                >Security</a
-              >
+          <div class="sat-footer__col">
+            <h4>CASE STUDIES</h4>
+            <div class="sat-footer__links">
+              <a href="case-studies/splitpass.html">SplitPass</a>
+              <a href="case-studies/clonara.html">Clonara</a>
+              <a href="case-studies/money.html">Money</a>
+            </div>
+          </div>
+          <div class="sat-footer__col">
+            <h4>CONTACT</h4>
+            <div class="sat-footer__links">
+              <a href="mailto:hello@satoshi-ltd.com">hello@satoshi-ltd.com</a>
+              <a href="#">Signal @satoshiltd</a>
+              <a href="#">Matrix @satoshi:matrix.org</a>
+              <a href="#">PGP 0x1234…CDEF</a>
             </div>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>
-            &copy; 2025 Satoshi Ltd. All rights reserved. Built with zero
-            telemetry.
-          </p>
+        <div class="sat-footer__bottom">
+          <div>© 2020–2026 SATOSHI LTD · ALL RIGHTS RESERVED</div>
+          <div>CONSULTANCY · ZERO TELEMETRY BY DEFAULT</div>
+          <div><a href="privacy.html">PRIVACY</a> · <a href="terms.html">TERMS</a> · <a href="security.html">SECURITY</a></div>
         </div>
       </div>
     </footer>
 
-    <!-- Main JavaScript -->
-    <script src="scripts.js"></script>
+    <script src="satoshi.js" defer></script>
   </body>
 </html>

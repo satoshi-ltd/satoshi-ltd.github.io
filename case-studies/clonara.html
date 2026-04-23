@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clonara · Case Study · Satoshi Ltd.</title>
+    <meta name="description" content="A living Persona, grown from real memories. Mobile app with six-question onboarding, grounded replies, revocable invites, 15 locales." />
+    <link rel="canonical" href="https://satoshi-ltd.com/case-studies/clonara.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Clonara · Case Study · Satoshi Ltd." />
+    <meta property="og:description" content="A living Persona, grown from real memories — not scraped ones." />
+    <meta property="og:image" content="https://satoshi-ltd.com/og-image.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../satoshi.css" />
+  </head>
+  <body>
+    <nav class="sat-nav">
+      <a class="sat-nav__brand" href="../index.html" aria-label="Satoshi Ltd. home">
+        <span class="sat-dot" aria-hidden="true"></span>
+        <span class="sat-nav__name">SATOSHI<span class="muted">/LTD</span><span class="sep">/</span><span class="crumb">clonara</span></span>
+      </a>
+      <div class="sat-nav__links">
+        <a href="../index.html#about"><span class="prompt">$</span> about</a>
+        <a href="../index.html#case-studies"><span class="prompt">$</span> case-studies</a>
+        <a href="../index.html#engage"><span class="prompt">$</span> engage</a>
+      </div>
+    </nav>
+
+    <section class="sat-section--cs-hero">
+      <div class="sat-container">
+        <div class="sat-cs-eyebrow">[ CASE STUDY · 02 / 03 ] ——— CLONARA · V1.0.1 · LIVE</div>
+        <div class="sat-cs-hero-grid">
+          <div>
+            <div class="sat-cs-prompt"><span class="user">satoshi@case-studies ~ $</span> cat clonara.brief</div>
+            <h1 class="sat-h1-cs cs-smaller">A <span class="accent">living Persona</span><br />grown from real memories — <span class="italic">not scraped ones.</span></h1>
+            <p class="sat-cs-lede">A mobile app that lets a person capture memories — stories, voice notes, journals — and chat with a Persona that speaks in their tone, remembers what they told it, and can be shared with family through a revocable invite link.</p>
+            <div class="sat-chips">
+              <span class="sat-chip">Product engineering</span>
+              <span class="sat-chip">LLM UX</span>
+              <span class="sat-chip">iOS / Android</span>
+              <span class="sat-chip">Subscriptions</span>
+              <span class="sat-chip">i18n · 15 languages</span>
+            </div>
+          </div>
+          <aside class="sat-yaml">
+            <div class="sat-yaml__head"><span>ENGAGEMENT.YAML</span><span class="dot">●</span></div>
+            <div class="sat-yaml__body">
+              <div class="sat-yaml__row"><span class="k">client</span><span>Internal / satoshi-ltd</span></div>
+              <div class="sat-yaml__row"><span class="k">type</span><span>Product R&amp;D + delivery</span></div>
+              <div class="sat-yaml__row"><span class="k">platforms</span><span>iOS · Android · web</span></div>
+              <div class="sat-yaml__row"><span class="k">stack</span><span>Expo SDK 54 · RN 0.81</span></div>
+              <div class="sat-yaml__row"><span class="k">backend</span><span>clonara.satoshi-ltd.com</span></div>
+              <div class="sat-yaml__row"><span class="k">billing</span><span>RevenueCat · Premium tier</span></div>
+              <div class="sat-yaml__row"><span class="k">i18n</span><span>15 locales (EN · ES · JA · AR · …)</span></div>
+              <div class="sat-yaml__row"><span class="k">status</span><span class="v-ok">live · App Store · Play</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[01]</div><div class="sat-sh__label">AT_A_GLANCE/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-metrics">
+          <div class="sat-metric"><div class="sat-metric__k">6</div><div class="sat-metric__label">onboarding questions</div><div class="sat-metric__note">reflect · tone · memory · topics · goal · access</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">15</div><div class="sat-metric__label">locales shipped</div><div class="sat-metric__note">EN · ES · FR · DE · IT · PT · JA · KO · ZH · HI · AR · RU · TH · …</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">1:1</div><div class="sat-metric__label">invite model</div><div class="sat-metric__note">revocable per-recipient tokens</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">$4.99</div><div class="sat-metric__label">monthly · 7-day trial</div><div class="sat-metric__note">RevenueCat · Premium tier</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[02]</div><div class="sat-sh__label">THE_PROBLEM.MD</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol">
+          <div>
+            <h2 class="sat-h2-cs">Most &ldquo;AI companions&rdquo; are blank characters. The interesting ones are <em>yours</em>.</h2>
+            <p class="sat-copy">A chatbot without a history is generic. A chatbot trained on your public posts is a stranger with your haircut. Neither is what people actually want when they say they&rsquo;d like to leave something behind.</p>
+            <p class="sat-copy">The design brief was to build the opposite: a Persona seeded only by what the user chooses to tell it, tunable on day one, and shareable only by explicit invite.</p>
+          </div>
+          <div class="sat-problems">
+            <div class="sat-problem"><div class="sat-problem__k">A.</div><div><div class="sat-problem__t">Cold-start blandness</div><div class="sat-problem__d">Generic AI chat apps feel the same five minutes in. There is no &ldquo;you&rdquo; in the replies.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">B.</div><div><div class="sat-problem__t">Memory drift</div><div class="sat-problem__d">Context windows forget. The Persona contradicts itself because nothing is anchored to ground-truth memories.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">C.</div><div><div class="sat-problem__t">Sharing without consent</div><div class="sat-problem__d">Family and friends want access, but users don&rsquo;t want a public profile. One-click revoke is non-negotiable.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">D.</div><div><div class="sat-problem__t">Onboarding abandonment</div><div class="sat-problem__d">If the Persona feels generic after 3 minutes, the user never returns. The first 90 seconds had to do real work.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[03]</div><div class="sat-sh__label">APPROACH.MD</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--even" style="margin-top:48px;display:grid;">
+          <div>
+            <div class="sat-kicker">// FOUR MOVES</div>
+            <h2 class="sat-h2-cs">Seed the Persona in 60 seconds, then let memories do the work.</h2>
+          </div>
+          <p class="sat-copy" style="margin-top:8px;">Onboarding asks six deliberate questions. Every chat request ships those answers plus a window of the user&rsquo;s own memories — so the Persona&rsquo;s tone is set by minute one and its content is always grounded in something the user actually said.</p>
+        </div>
+        <div class="sat-four">
+          <div class="sat-four__cell"><div class="sat-four__n">[01]</div><div class="sat-four__t">Opinionated onboarding</div><div class="sat-four__d">Six questions (reflect, tone, memory, topics, goal, access) shape the Persona&rsquo;s voice before the first message is sent.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[02]</div><div class="sat-four__t">Memories as ground-truth</div><div class="sat-four__d">Each chat request attaches a relevant slice of memories. The model is steered by facts the user owns, not training data.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[03]</div><div class="sat-four__t">Invite-only sharing</div><div class="sat-four__d">Per-recipient tokens (universal-links via clonara.satoshi-ltd.com). Each one is independently revocable from the Manage Invitations screen.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[04]</div><div class="sat-four__t">Honest subscription</div><div class="sat-four__d">7-day free trial. One clear Premium tier. Free plan caps at 10 transcriptions so trial feels like the product, not a teaser.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[04]</div><div class="sat-sh__label">PERSONA_DIAL/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--even-wide" style="margin-top:48px;display:grid;">
+          <div>
+            <h2 class="sat-h2-cs sat-h2-cs--sm">Six questions, one Persona. No sliders, no jargon.</h2>
+            <p class="sat-copy">Instead of exposing a prompt-engineering surface, onboarding asks the same questions a biographer would. Answers are stored alongside the account and prepended to every chat as lightweight system context. The Persona&rsquo;s voice <em>matches</em> the first screen the user saw — not a generic template.</p>
+            <p class="sat-copy">Settings can rewrite any answer later, and an optional long-form <code>prompt</code> field lets power users dictate a custom persona description.</p>
+            <div class="sat-tenet">
+              <div class="sat-tenet__k">// DESIGN TENET</div>
+              <div class="sat-tenet__t">The fastest way to make a chatbot feel personal is to ask six concrete questions up-front — not to add another slider six screens deep.</div>
+            </div>
+          </div>
+          <div class="sat-fig">
+            <div class="sat-fig__labels"><span>FIG. 02 — ONBOARDING → PERSONA</span><span>satoshi-ltd/clonara</span></div>
+            <div class="sat-dial">
+              <div class="sat-dial__row"><div class="sat-dial__n">01</div><div class="sat-dial__label">reflect</div><div class="sat-dial__note">warmth · humor · wisdom · adventure</div></div>
+              <div class="sat-dial__row"><div class="sat-dial__n">02</div><div class="sat-dial__label">tone</div><div class="sat-dial__note">friendly · thoughtful · playful · formal · personal</div></div>
+              <div class="sat-dial__row"><div class="sat-dial__n">03</div><div class="sat-dial__label">memory</div><div class="sat-dial__note">childhood · lesson · funny · favorite</div></div>
+              <div class="sat-dial__row"><div class="sat-dial__n">04</div><div class="sat-dial__label">topics</div><div class="sat-dial__note">which themes the persona leans into</div></div>
+              <div class="sat-dial__row"><div class="sat-dial__n">05</div><div class="sat-dial__label">goal</div><div class="sat-dial__note">why the user is building this persona</div></div>
+              <div class="sat-dial__row"><div class="sat-dial__n">06</div><div class="sat-dial__label">access</div><div class="sat-dial__note">who they imagine talking to it</div></div>
+            </div>
+            <div class="sat-dial__down">↓</div>
+            <div class="sat-dial__seed">
+              <div class="sat-dial__seed-avatar">∞</div>
+              <div>
+                <div class="sat-dial__seed-t">Persona seed</div>
+                <div class="sat-dial__seed-d">Attached to every chat alongside a slice of the user&rsquo;s memories.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[05]</div><div class="sat-sh__label">MEMORY_PIPELINE/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--code" style="margin-top:56px;display:grid;">
+          <div>
+            <div class="sat-kicker">// CHAT REQUEST</div>
+            <h2 class="sat-h2-cs sat-h2-cs--xs">Every reply is anchored in memories the user wrote themselves.</h2>
+            <p class="sat-copy">Memories are first-class. Users add them by text, dictation (Whisper-grade transcription at 16 kHz mono), or imported journals. Each memory carries metadata — topic, date, priority — so the backend can surface the most relevant slice when a chat happens.</p>
+            <p class="sat-copy">The client is offline-aware: <code>NetInfo</code> short-circuits any request when the device is offline, and AsyncStorage caches the last known state so the UI never crashes on a flight.</p>
+          </div>
+          <pre class="sat-code">POST /chats/:id/message
+
+{
+  "text":    <span class="accent">"What do you remember about grandma's house?"</span>,
+  "context": {
+    "persona":  { <span class="ok">reflect</span>: "warmth", <span class="ok">tone</span>: "thoughtful", ... },
+    "memories": [
+      { id: "m_01", topic: "childhood", date: "1994-07", text: "..." },
+      { id: "m_12", topic: "family",    date: "2001-12", text: "..." },
+      { id: "m_23", topic: "places",    date: "2015-04", text: "..." }
+    ]
+  }
+}
+
+→ <span class="accent">200 OK</span>   reply grounded in user-owned facts
+→ <span class="mute">offline</span>  short-circuits before the request even leaves the device</pre>
+        </div>
+
+        <div class="sat-kv sat-kv--4">
+          <div class="sat-kv__cell"><div class="sat-kv__k">AUTH</div><div class="sat-kv__v">Email + code</div><div class="sat-kv__n">magic-code, no passwords, Bearer JWT</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">STORAGE</div><div class="sat-kv__v">AsyncStorage</div><div class="sat-kv__n">app-state · transcriptions · items · subs</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">AUDIO</div><div class="sat-kv__v">16 kHz · mono</div><div class="sat-kv__n">expo-av · 5-min cap · AAC / WAV</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">OFFLINE</div><div class="sat-kv__v">NetInfo guard</div><div class="sat-kv__n">requests short-circuit with typed error</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">BILLING</div><div class="sat-kv__v">RevenueCat</div><div class="sat-kv__n">monthly $4.99 · yearly $39.99 · 7-day trial</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">INVITATIONS</div><div class="sat-kv__v">Universal links</div><div class="sat-kv__n">applinks:clonara.satoshi-ltd.com</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">NOTIFICATIONS</div><div class="sat-kv__v">expo-notifications</div><div class="sat-kv__n">morning brief · evening review</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">BACKUPS</div><div class="sat-kv__v">BackupService</div><div class="sat-kv__n">export / restore memories + settings</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[06]</div><div class="sat-sh__label">BRAND/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--even" style="margin-top:56px;display:grid;">
+          <div>
+            <h2 class="sat-h2-cs sat-h2-cs--xs">A warm-paper aesthetic for an app about remembering.</h2>
+            <p class="sat-copy">Most AI products look like cold chrome. Clonara is the opposite: cream paper, warm brown ink, a single golden accent. Typography pairs a technical sans (<strong>Euclid Circular A</strong>) with an editorial serif (<strong>Canela Text</strong>) — utility for forms, intimacy for stories.</p>
+          </div>
+          <div class="sat-brand sat-brand--paper">
+            <div class="sat-brand__head">
+              <div class="sat-brand__avatar sat-brand__avatar--round">∞</div>
+              <div>
+                <div class="sat-brand__name">Clonara</div>
+                <div class="sat-brand__sub">BRAND SPECIMEN</div>
+              </div>
+            </div>
+            <div class="sat-brand__swatches">
+              <div class="sat-brand__swatch"><div class="chip" style="background:#f3f2ee"></div><div class="hex">#f3f2ee</div><div class="lbl">paper</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#EDE9E4"></div><div class="hex">#EDE9E4</div><div class="lbl">card</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#473729"></div><div class="hex">#473729</div><div class="lbl">ink</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#FFBC2d"></div><div class="hex">#FFBC2d</div><div class="lbl">accent</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#A09485"></div><div class="hex">#A09485</div><div class="lbl">muted</div></div>
+            </div>
+            <div class="sat-brand__quote">&ldquo;Preserve your essence with a living Persona that grows with your memories.&rdquo;</div>
+            <div class="sat-brand__cite">— ONBOARDING SLIDE 01 · CANELA TEXT ITALIC</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[07]</div><div class="sat-sh__label">OUTCOMES.TXT</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-outcomes">
+          <ul>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Shipped to iOS and Android</div><div class="sat-outcomes__d">v1.0.1 on Expo SDK 54, RevenueCat billing live, universal-link invitations working.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Localised day one</div><div class="sat-outcomes__d">15 languages covered by a single i18n runtime, including RTL (Arabic) layout.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Offline-aware client</div><div class="sat-outcomes__d">Every API call is guarded; offline, timeout, and HTTP failures are typed and translated.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Consent model users understand</div><div class="sat-outcomes__d">Invitations are explicit, per-recipient, and revocable from one screen.</div></div></li>
+          </ul>
+          <div class="sat-learned">
+            <div class="sat-learned__k">// WHAT WE LEARNED</div>
+            <blockquote class="sat-learned__q">&ldquo;The interesting work wasn&rsquo;t the model. It was deciding which six questions the user should answer before the Persona ever replies — and trusting that those six answers <em>are</em> the product.&rdquo;</blockquote>
+            <div class="sat-learned__cite">— satoshi-ltd product notes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-cs-next">
+        <a href="splitpass.html">
+          <div class="sat-cs-next__k">← PREV</div>
+          <div class="sat-cs-next__t">SplitPass</div>
+          <div class="sat-cs-next__d">case study · 01 / 03</div>
+        </a>
+        <a href="money.html" class="next">
+          <div class="sat-cs-next__k accent">NEXT →</div>
+          <div class="sat-cs-next__t">Môney</div>
+          <div class="sat-cs-next__d">case study · 03 / 03</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="sat-section--footer-only">
+      <div class="sat-cs-cta">
+        <div>
+          <div class="sat-cs-cta__k">// have a brief like this one?</div>
+          <h3 class="sat-cs-cta__t">We take a handful of engagements a year. Talk to us.</h3>
+        </div>
+        <a href="#" data-sat-book class="sat-cta sat-cta--primary sat-cta--lg">./book_a_call <span aria-hidden="true">▸</span></a>
+      </div>
+      <div class="sat-cs-footer">
+        <div>© 2020–2026 SATOSHI LTD · CASE STUDY · CLONARA</div>
+        <div>CONSULTANCY · ZERO TELEMETRY BY DEFAULT</div>
+      </div>
+    </section>
+
+    <script src="../satoshi.js" defer></script>
+  </body>
+</html>

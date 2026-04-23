@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Môney · Case Study · Satoshi Ltd.</title>
+    <meta name="description" content="A local-first personal finance app. AsyncStorage-only persistence, on-device insights, JSON backups the user owns. Zero telemetry." />
+    <link rel="canonical" href="https://satoshi-ltd.com/case-studies/money.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Môney · Case Study · Satoshi Ltd." />
+    <meta property="og:description" content="A ledger that never phones home — and still gets smarter every week." />
+    <meta property="og:image" content="https://satoshi-ltd.com/og-image.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../satoshi.css" />
+  </head>
+  <body>
+    <nav class="sat-nav">
+      <a class="sat-nav__brand" href="../index.html" aria-label="Satoshi Ltd. home">
+        <span class="sat-dot" aria-hidden="true"></span>
+        <span class="sat-nav__name">SATOSHI<span class="muted">/LTD</span><span class="sep">/</span><span class="crumb">money</span></span>
+      </a>
+      <div class="sat-nav__links">
+        <a href="../index.html#about"><span class="prompt">$</span> about</a>
+        <a href="../index.html#case-studies"><span class="prompt">$</span> case-studies</a>
+        <a href="../index.html#engage"><span class="prompt">$</span> engage</a>
+      </div>
+    </nav>
+
+    <section class="sat-section--cs-hero">
+      <div class="sat-container">
+        <div class="sat-cs-eyebrow">[ CASE STUDY · 03 / 03 ] ——— MÔNEY · V1.2.5 · LIVE</div>
+        <div class="sat-cs-hero-grid">
+          <div>
+            <div class="sat-cs-prompt"><span class="user">satoshi@case-studies ~ $</span> cat money.brief</div>
+            <h1 class="sat-h1-cs cs-smaller">A ledger that <span class="accent">never phones home</span> — <span class="italic">and still gets smarter every week.</span></h1>
+            <p class="sat-cs-lede">A local-first personal finance app. No bank linking, no scraping, no telemetry. Data sits in AsyncStorage, backups are JSON files the user owns, and the insights engine runs entirely on device.</p>
+            <div class="sat-chips">
+              <span class="sat-chip">Local-first architecture</span>
+              <span class="sat-chip">Multi-currency</span>
+              <span class="sat-chip">Scheduled txs</span>
+              <span class="sat-chip">On-device insights</span>
+              <span class="sat-chip">RevenueCat + BTC unlock</span>
+            </div>
+          </div>
+          <aside class="sat-yaml">
+            <div class="sat-yaml__head"><span>ENGAGEMENT.YAML</span><span class="dot">●</span></div>
+            <div class="sat-yaml__body">
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">client</span><span>Internal / satoshi-ltd</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">type</span><span>Product R&amp;D + delivery</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">platforms</span><span>iOS 15.1+ · Android</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">stack</span><span>Expo SDK 54 · RN 0.81.5 · React 19.1</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">persistence</span><span>AsyncStorage · no cloud DB</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">billing</span><span>RevenueCat · local BTC unlock path</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">i18n</span><span>5 locales (EN · ES · PT · FR · DE)</span></div>
+              <div class="sat-yaml__row sat-yaml__row--wide"><span class="k">status</span><span class="v-ok">live · v1.2.5</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[01]</div><div class="sat-sh__label">AT_A_GLANCE/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-metrics">
+          <div class="sat-metric"><div class="sat-metric__k">0</div><div class="sat-metric__label">bytes sent by default</div><div class="sat-metric__note">network paths are opt-in — FX rates, RevenueCat, optional lead email</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">3</div><div class="sat-metric__label">opt-in network paths</div><div class="sat-metric__note">and nothing else ever leaves the device</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">90d</div><div class="sat-metric__label">schedule sync window</div><div class="sat-metric__note">dedup by {scheduledId, occurrenceAt} · capped at 100/run</div></div>
+          <div class="sat-metric"><div class="sat-metric__k">JSON</div><div class="sat-metric__label">own your backups</div><div class="sat-metric__note">portable files · defensive import · never destructive</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[02]</div><div class="sat-sh__label">THE_PROBLEM.MD</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol">
+          <div>
+            <h2 class="sat-h2-cs">Every &ldquo;privacy&rdquo; finance app eventually asks for your bank password.</h2>
+            <p class="sat-copy">Personal-finance apps either scrape your bank (and sell aggregated data) or give up on automation. The brief was to find a third path: manual entry that doesn&rsquo;t feel manual, and insights that don&rsquo;t require a server.</p>
+            <p class="sat-copy">The app had to feel fast on a 3-year-old phone and work in airplane mode — because that&rsquo;s where most people actually log expenses: on a train, in a shop, with two bars.</p>
+          </div>
+          <div class="sat-problems">
+            <div class="sat-problem"><div class="sat-problem__k">A.</div><div><div class="sat-problem__t">Manual entry is the floor</div><div class="sat-problem__d">If logging a coffee takes more than four taps, the user abandons the app in week two. Speed is the feature.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">B.</div><div><div class="sat-problem__t">No server, but still smart</div><div class="sat-problem__d">Users want categories, merchants, and amounts to autocomplete — without a backend to train a model.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">C.</div><div><div class="sat-problem__t">Multi-currency without drift</div><div class="sat-problem__d">A traveller logs € in Paris and £ in London. Balances must stay honest and FX must not re-write history.</div></div></div>
+            <div class="sat-problem"><div class="sat-problem__k">D.</div><div><div class="sat-problem__t">Backups must be boring</div><div class="sat-problem__d">Boring = predictable. A JSON file the user can email to themselves is worth more than any encrypted cloud sync they don&rsquo;t trust.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[03]</div><div class="sat-sh__label">APPROACH.MD</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--even" style="margin-top:48px;display:grid;">
+          <div>
+            <div class="sat-kicker">// FOUR MOVES</div>
+            <h2 class="sat-h2-cs">Pick a local-first posture, then refuse to break it.</h2>
+          </div>
+          <p class="sat-copy" style="margin-top:8px;">Local-first is an engineering constraint, not a marketing word. Every feature had to degrade gracefully when offline, every piece of state had to survive a backup round-trip, and every network call had to be explicit enough to list on one hand.</p>
+        </div>
+        <div class="sat-four">
+          <div class="sat-four__cell"><div class="sat-four__n">[01]</div><div class="sat-four__t">AsyncStorage is the DB</div><div class="sat-four__d">All state lives on device: accounts, transactions, scheduled templates, rates cache, settings. Zero required network.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[02]</div><div class="sat-four__t">Auto-learn on device</div><div class="sat-four__d">autoCategory / autoAccount / autoAmount / autoTokens rebuild from history on boot — suggestions appear as the user types, no model required.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[03]</div><div class="sat-four__t">Scheduled as first-class</div><div class="sat-four__d">Templates generate txs inside a 90-day window, deduped by {scheduledId, occurrenceAt}, capped at 100/run so a bug can never flood the ledger.</div></div>
+          <div class="sat-four__cell"><div class="sat-four__n">[04]</div><div class="sat-four__t">Backups you can email</div><div class="sat-four__d">JSON files with stable top-level keys. Defensive import: an invalid payload cannot overwrite current state. Ever.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[04]</div><div class="sat-sh__label">INSIGHTS_ENGINE/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--even-wide" style="margin-top:48px;display:grid;">
+          <div>
+            <h2 class="sat-h2-cs sat-h2-cs--sm">Trends, pace, and anomalies — computed the minute the app opens.</h2>
+            <p class="sat-copy">A pure function takes <code>(accounts, txs, scheduledTxs, rates, settings, now)</code> and returns a fully-shaped insights object: a 12-month trend per category, a 6-month monthly pace, a 3-month anomaly window. No debouncing, no background sync, no spinner — the math runs in single-digit milliseconds on a phone.</p>
+            <p class="sat-copy">Multi-currency is honoured at the transaction timestamp: each tx exchanges through the rates cache <em>as of</em> when it was entered, so historical balances never silently drift.</p>
+            <div class="sat-tenet">
+              <div class="sat-tenet__k">// DESIGN TENET</div>
+              <div class="sat-tenet__t">An &ldquo;offline&rdquo; app that silently needs the network for its best features is not offline. Every insight in Môney must be computable with the phone in airplane mode.</div>
+            </div>
+          </div>
+          <div class="sat-fig sat-fig--compact">
+            <div class="sat-fig__labels" style="position:static;margin-bottom:12px;"><span>FIG. 03 — TRAILING 12M · ON-DEVICE</span><span>satoshi-ltd/money</span></div>
+            <svg viewBox="0 0 520 260" aria-hidden="true">
+              <line x1="32" x2="488" y1="81" y2="81" stroke="#1e1e1e" stroke-dasharray="2 4" />
+              <line x1="32" x2="488" y1="130" y2="130" stroke="#1e1e1e" stroke-dasharray="2 4" />
+              <line x1="32" x2="488" y1="179" y2="179" stroke="#1e1e1e" stroke-dasharray="2 4" />
+              <path d="M 32 204.2 L 73.5 228.0 L 114.9 150.8 L 156.4 180.5 L 197.8 133.0 L 239.3 97.3 L 280.7 168.6 L 322.2 144.8 L 363.6 67.6 L 405.1 156.7 L 446.5 192.4 L 488 32 L 488 228 L 32 228 Z" fill="#ffc431" fill-opacity="0.08" />
+              <path d="M 32 204.2 L 73.5 228.0 L 114.9 150.8 L 156.4 180.5 L 197.8 133.0 L 239.3 97.3 L 280.7 168.6 L 322.2 144.8 L 363.6 67.6 L 405.1 156.7 L 446.5 192.4 L 488 32" fill="none" stroke="#ffc431" stroke-width="1.6" />
+              <circle cx="32" cy="204.2" r="2.5" fill="#a5a29a" />
+              <circle cx="73.5" cy="228" r="2.5" fill="#a5a29a" />
+              <circle cx="114.9" cy="150.8" r="2.5" fill="#a5a29a" />
+              <circle cx="156.4" cy="180.5" r="2.5" fill="#a5a29a" />
+              <circle cx="197.8" cy="133" r="2.5" fill="#a5a29a" />
+              <circle cx="239.3" cy="97.3" r="2.5" fill="#a5a29a" />
+              <circle cx="280.7" cy="168.6" r="2.5" fill="#a5a29a" />
+              <circle cx="322.2" cy="144.8" r="2.5" fill="#a5a29a" />
+              <circle cx="363.6" cy="67.6" r="2.5" fill="#a5a29a" />
+              <circle cx="405.1" cy="156.7" r="2.5" fill="#a5a29a" />
+              <circle cx="446.5" cy="192.4" r="2.5" fill="#a5a29a" />
+              <circle cx="488" cy="32" r="5" fill="#ffc431" />
+              <g transform="translate(420 -14)">
+                <rect width="132" height="32" rx="2" fill="#0a0a0a" stroke="#ffc431" />
+                <text x="10" y="13" fill="#7a7873" font-family="Fragment Mono, monospace" font-size="9" letter-spacing="0.1em">CURRENT · +19%</text>
+                <text x="10" y="26" fill="#ffc431" font-family="Fragment Mono, monospace" font-size="11" font-weight="700">unusual spend ▲</text>
+              </g>
+              <text x="32" y="250" fill="#4a4a4a" font-family="Fragment Mono, monospace" font-size="9" letter-spacing="0.12em">MAY &apos;25</text>
+              <text x="488" y="250" fill="#4a4a4a" font-family="Fragment Mono, monospace" font-size="9" letter-spacing="0.12em" text-anchor="end">APR &apos;26</text>
+            </svg>
+            <div class="sat-chips-row">
+              <div class="sat-chips-row__cell"><div class="sat-chips-row__k">TREND</div><div class="sat-chips-row__v">+12%</div><div class="sat-chips-row__n">12-mo category drift</div></div>
+              <div class="sat-chips-row__cell"><div class="sat-chips-row__k">PACE</div><div class="sat-chips-row__v">68%</div><div class="sat-chips-row__n">6-mo monthly pace</div></div>
+              <div class="sat-chips-row__cell"><div class="sat-chips-row__k">ANOMALY</div><div class="sat-chips-row__v">▲ food</div><div class="sat-chips-row__n">3-mo window</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[05]</div><div class="sat-sh__label">SCHEDULE_SYSTEM/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--code" style="margin-top:56px;display:grid;">
+          <div>
+            <div class="sat-kicker">// RECURRENCE</div>
+            <h2 class="sat-h2-cs sat-h2-cs--xs">Recurring transactions that can&rsquo;t duplicate themselves — even across re-installs.</h2>
+            <p class="sat-copy">Each scheduled template computes its own occurrences via a pure recurrence module (weekly by weekday, monthly by day-of-month, yearly). At boot, the store syncs the 90-day window, materialising only occurrences that aren&rsquo;t already stamped with a matching <code>{scheduledId, occurrenceAt}</code> key.</p>
+            <p class="sat-copy">A hard safety cap of <strong>100 auto-created txs per run</strong> means that even a pathological state (clock skew, corrupt pattern) can&rsquo;t pollute the ledger. Notifications follow the same law: 8 per template, 48 total.</p>
+          </div>
+          <pre class="sat-code">runScheduledSync(now) {
+
+  window  = [now - 90d, now]
+  for (s of scheduledTxs):
+    for (ts of occurrences(s, window)):
+      key = <span class="accent">${s.id}:${ts}</span>
+      if key in existingMeta: <span class="mute">skip</span>
+      else:            <span class="ok">materialise</span> tx
+      if created++ > 100: <span class="warn">break // safety cap</span>
+
+  syncScheduledNotifications({
+    horizon: <span class="accent">90d</span>,
+    perTemplate: 8, total: 48,
+    trigger: <span class="accent">"day - 1 @ 08:00 local"</span>,
+  });
+}</pre>
+        </div>
+
+        <div class="sat-kv sat-kv--4">
+          <div class="sat-kv__cell"><div class="sat-kv__k">PERSISTENCE</div><div class="sat-kv__v">AsyncStorage</div><div class="sat-kv__n">accounts · txs · scheduled · rates · settings</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">STATE</div><div class="sat-kv__v">Context + reducers</div><div class="sat-kv__n">small surface, migrate-on-boot, versioned schema</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">OFFLINE</div><div class="sat-kv__v">First-class</div><div class="sat-kv__n">every core flow works in airplane mode</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">FX</div><div class="sat-kv__v">Per-timestamp</div><div class="sat-kv__n">exchange at tx time, never rewrite history</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">PREMIUM</div><div class="sat-kv__v">RevenueCat</div><div class="sat-kv__n">local BTC unlock path preserved on sync</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">AUTH</div><div class="sat-kv__v">PIN lock</div><div class="sat-kv__n">optional · amount masking on background</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">CHARTS</div><div class="sat-kv__v">Gifted Charts</div><div class="sat-kv__n">trend · pace · category rings · pure RN SVG</div></div>
+          <div class="sat-kv__cell"><div class="sat-kv__k">BACKUPS</div><div class="sat-kv__v">JSON round-trip</div><div class="sat-kv__n">defensive import · never overwrite on error</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[06]</div><div class="sat-sh__label">BRAND/</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-twocol--even" style="margin-top:56px;display:grid;">
+          <div>
+            <h2 class="sat-h2-cs sat-h2-cs--xs">Warm paper. Quiet numbers. Nothing shouting for your attention.</h2>
+            <p class="sat-copy">Most finance apps feel like an accountant&rsquo;s Excel rendered in neon. Môney takes the opposite bet: warm cream, brown ink, one gold accent — an interface that rewards quick glances and gets out of your way.</p>
+            <p class="sat-copy">Both light and dark themes share the same ink-on-paper logic. Numbers use the primary family, labels use the secondary. No drop shadows on money values. No bright red for expenses — just a slightly warmer brown.</p>
+          </div>
+          <div class="sat-brand sat-brand--paper">
+            <div class="sat-brand__head">
+              <div class="sat-brand__avatar sat-brand__avatar--rounded">M</div>
+              <div>
+                <div class="sat-brand__name">Môney</div>
+                <div class="sat-brand__sub">BRAND SPECIMEN</div>
+              </div>
+            </div>
+            <div class="sat-brand__swatches">
+              <div class="sat-brand__swatch"><div class="chip" style="background:#f3f2ee"></div><div class="hex">#f3f2ee</div><div class="lbl">paper</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#EDE9E4"></div><div class="hex">#EDE9E4</div><div class="lbl">surface</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#473729"></div><div class="hex">#473729</div><div class="lbl">ink</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#FFBC2d"></div><div class="hex">#FFBC2d</div><div class="lbl">accent</div></div>
+              <div class="sat-brand__swatch"><div class="chip" style="background:#8B4513"></div><div class="hex">#8B4513</div><div class="lbl">danger</div></div>
+            </div>
+            <div class="sat-brand__row sat-brand__row--head"><span class="k">APRIL · BASE €</span><span class="v">€ 4,218.60</span></div>
+            <div class="sat-brand__row"><span>Rent · scheduled</span><span class="neg">− 950.00</span></div>
+            <div class="sat-brand__row"><span>Coffee · Madrid</span><span class="neg">− 2.40</span></div>
+            <div class="sat-brand__row"><span>Freelance · Lisbon</span><span class="pos">+ 1,200.00</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-container">
+        <div class="sat-sh"><div class="sat-sh__num">[07]</div><div class="sat-sh__label">OUTCOMES.TXT</div><div class="sat-sh__rule"></div></div>
+        <div class="sat-outcomes">
+          <ul>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Shipped and stable</div><div class="sat-outcomes__d">v1.2.5 live on iOS (15.1+) and Android, running Expo SDK 54 + React 19 with zero-downtime migration path since v1.0.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Three network paths, total</div><div class="sat-outcomes__d">FX rates · RevenueCat · optional lead email. Everything else stays on device — auditable in one grep.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Fast on old phones</div><div class="sat-outcomes__d">Insights engine runs on open; no spinners, no background workers, no cloud function invocations to debug.</div></div></li>
+            <li><span class="caret">▸</span><div><div class="sat-outcomes__t">Migrations without drama</div><div class="sat-outcomes__d">Schema version + defensive backup import means users can upgrade, downgrade, and restore from JSON without losing a byte.</div></div></li>
+          </ul>
+          <div class="sat-learned">
+            <div class="sat-learned__k">// WHAT WE LEARNED</div>
+            <blockquote class="sat-learned__q">&ldquo;Local-first isn&rsquo;t a marketing word. It&rsquo;s a discipline: every feature has to earn the right to make a network call, and <em>most features never will.</em>&rdquo;</blockquote>
+            <div class="sat-learned__cite">— satoshi-ltd engineering notes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sat-section--cs">
+      <div class="sat-cs-next">
+        <a href="clonara.html">
+          <div class="sat-cs-next__k">← PREV</div>
+          <div class="sat-cs-next__t">Clonara</div>
+          <div class="sat-cs-next__d">case study · 02 / 03</div>
+        </a>
+        <a href="splitpass.html">
+          <div class="sat-cs-next__k accent">↺ FIRST</div>
+          <div class="sat-cs-next__t">SplitPass</div>
+          <div class="sat-cs-next__d">case study · 01 / 03</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="sat-section--footer-only">
+      <div class="sat-cs-cta">
+        <div>
+          <div class="sat-cs-cta__k">// have a brief like this one?</div>
+          <h3 class="sat-cs-cta__t">We take a handful of engagements a year. Talk to us.</h3>
+        </div>
+        <a href="#" data-sat-book class="sat-cta sat-cta--primary sat-cta--lg">./book_a_call <span aria-hidden="true">▸</span></a>
+      </div>
+      <div class="sat-cs-footer">
+        <div>© 2020–2026 SATOSHI LTD · CASE STUDY · MÔNEY</div>
+        <div>CONSULTANCY · ZERO TELEMETRY BY DEFAULT</div>
+      </div>
+    </section>
+
+    <script src="../satoshi.js" defer></script>
+  </body>
+</html>
