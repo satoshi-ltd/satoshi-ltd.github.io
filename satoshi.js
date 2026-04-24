@@ -48,7 +48,7 @@
   });
 })();
 
-// Hero matrix rain — subtle hex characters, paused off-screen, respects reduced-motion
+// Hero dithered metaballs — ASCII halftone pattern of slowly morphing blobs
 (function () {
   'use strict';
 
@@ -59,11 +59,29 @@
   if (mq && mq.matches) return;
 
   var ctx = canvas.getContext('2d');
-  var CHARS = '0123456789ABCDEF·  ';
   var FONT_SIZE = 14;
-  var columns = [];
+  // Char ramp — empty, then sparse dither → solid. Last index = densest.
+  var CHARS = ['·', ':', '+', '*', '#', '%'];
+  var LEVELS = CHARS.length;
+  // Classic metaball isovalue thresholds — field < T0 renders empty,
+  // band [T0..T1] maps across the char ramp.
+  var T_LOW = 0.55;
+  var T_HIGH = 1.35;
+  var balls = [];
   var w = 0, h = 0;
   var raf = 0;
+  var t = 0;
+
+  function setupBalls() {
+    // Smaller relative radii + fewer balls so most of the frame stays empty
+    // and the blobs read as discrete halftone shapes.
+    balls = [
+      { x: 0.20, y: 0.40, r: 0.14, sx:  0.00070, sy: -0.00048 },
+      { x: 0.72, y: 0.58, r: 0.18, sx: -0.00058, sy:  0.00064 },
+      { x: 0.48, y: 0.22, r: 0.11, sx:  0.00042, sy:  0.00055 },
+      { x: 0.58, y: 0.82, r: 0.13, sx: -0.00052, sy: -0.00044 }
+    ];
+  }
 
   function resize() {
     var rect = canvas.getBoundingClientRect();
@@ -75,34 +93,52 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.font = FONT_SIZE + 'px ui-monospace, "SF Mono", Menlo, monospace';
     ctx.textBaseline = 'top';
-
-    var numCols = Math.ceil(w / FONT_SIZE);
-    columns.length = numCols;
-    for (var i = 0; i < numCols; i++) {
-      if (columns[i] == null) {
-        columns[i] = (Math.random() * -h / FONT_SIZE) | 0;
-      }
-    }
-
-    ctx.fillStyle = '#0a0a0a';
-    ctx.fillRect(0, 0, w, h);
+    setupBalls();
   }
 
   function step() {
-    ctx.fillStyle = 'rgba(10, 10, 10, 0.06)';
-    ctx.fillRect(0, 0, w, h);
+    t += 1;
+    ctx.clearRect(0, 0, w, h);
 
-    for (var i = 0; i < columns.length; i++) {
-      var y = columns[i] * FONT_SIZE;
-      if (y > -FONT_SIZE && y < h) {
-        var ch = CHARS.charAt((Math.random() * CHARS.length) | 0);
-        var isHead = Math.random() > 0.92;
-        ctx.fillStyle = isHead ? 'rgba(255, 196, 49, 0.55)' : 'rgba(255, 196, 49, 0.22)';
-        ctx.fillText(ch, i * FONT_SIZE, y);
-      }
-      columns[i]++;
-      if (y > h && Math.random() > 0.975) {
-        columns[i] = -((Math.random() * 20) | 0);
+    for (var i = 0; i < balls.length; i++) {
+      var b = balls[i];
+      b.x += b.sx; b.y += b.sy;
+      if (b.x < 0.08) b.sx = Math.abs(b.sx);
+      if (b.x > 0.92) b.sx = -Math.abs(b.sx);
+      if (b.y < 0.08) b.sy = Math.abs(b.sy);
+      if (b.y > 0.92) b.sy = -Math.abs(b.sy);
+    }
+
+    var minDim = Math.min(w, h);
+    var cache = [];
+    for (var j = 0; j < balls.length; j++) {
+      var bb = balls[j];
+      var rPulse = bb.r + 0.018 * Math.sin(t * 0.025 + j * 1.3);
+      var rPx = rPulse * minDim;
+      cache.push({ x: bb.x * w, y: bb.y * h, r2: rPx * rPx });
+    }
+
+    var band = T_HIGH - T_LOW;
+    for (var cy = 0; cy < h; cy += FONT_SIZE) {
+      for (var cx = 0; cx < w; cx += FONT_SIZE) {
+        var field = 0;
+        var centerX = cx + FONT_SIZE * 0.5;
+        var centerY = cy + FONT_SIZE * 0.5;
+        for (var k = 0; k < cache.length; k++) {
+          var ck = cache[k];
+          var dx = centerX - ck.x;
+          var dy = centerY - ck.y;
+          // classic metaball: r² / d² (with tiny epsilon to avoid div0)
+          field += ck.r2 / (dx * dx + dy * dy + 1);
+        }
+        if (field < T_LOW) continue; // empty — pure background
+        var tNorm = (field - T_LOW) / band;
+        if (tNorm > 1) tNorm = 1;
+        var level = (tNorm * LEVELS) | 0;
+        if (level >= LEVELS) level = LEVELS - 1;
+        var alpha = 0.08 + (level / (LEVELS - 1)) * 0.24;
+        ctx.fillStyle = 'rgba(255, 196, 49, ' + alpha + ')';
+        ctx.fillText(CHARS[level], cx, cy);
       }
     }
 
