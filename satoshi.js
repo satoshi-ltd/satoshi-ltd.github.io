@@ -1,4 +1,133 @@
-// Satoshi Ltd. — minimal vanilla JS (book-call modal only)
+// Satoshi Ltd. — minimal vanilla JS (book-call modal + hero matrix bg + mobile nav)
+
+// Mobile nav toggle — inject $ menu button, expand/collapse links panel
+(function () {
+  'use strict';
+
+  var nav = document.querySelector('.sat-nav');
+  if (!nav) return;
+  var links = nav.querySelector('.sat-nav__links');
+  if (!links) return;
+
+  var btn = document.createElement('button');
+  btn.className = 'sat-nav__toggle';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Toggle menu');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<span class="prompt">$</span><span data-slot="label">menu</span><span class="chev" aria-hidden="true">▾</span>';
+
+  var ip = nav.querySelector('.sat-nav__ip');
+  if (ip) nav.insertBefore(btn, ip);
+  else nav.appendChild(btn);
+
+  var labelEl = btn.querySelector('[data-slot="label"]');
+
+  function setOpen(open) {
+    nav.classList.toggle('sat-nav--open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    labelEl.textContent = open ? 'close' : 'menu';
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(!nav.classList.contains('sat-nav--open'));
+  });
+
+  links.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!nav.classList.contains('sat-nav--open')) return;
+    if (nav.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('sat-nav--open')) setOpen(false);
+  });
+})();
+
+// Hero matrix rain — subtle hex characters, paused off-screen, respects reduced-motion
+(function () {
+  'use strict';
+
+  var canvas = document.querySelector('.sat-hero-bg');
+  if (!canvas || !canvas.getContext) return;
+
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.matches) return;
+
+  var ctx = canvas.getContext('2d');
+  var CHARS = '0123456789ABCDEF·  ';
+  var FONT_SIZE = 14;
+  var columns = [];
+  var w = 0, h = 0;
+  var raf = 0;
+
+  function resize() {
+    var rect = canvas.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = Math.max(1, Math.floor(rect.width));
+    h = Math.max(1, Math.floor(rect.height));
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.font = FONT_SIZE + 'px ui-monospace, "SF Mono", Menlo, monospace';
+    ctx.textBaseline = 'top';
+
+    var numCols = Math.ceil(w / FONT_SIZE);
+    columns.length = numCols;
+    for (var i = 0; i < numCols; i++) {
+      if (columns[i] == null) {
+        columns[i] = (Math.random() * -h / FONT_SIZE) | 0;
+      }
+    }
+
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, w, h);
+  }
+
+  function step() {
+    ctx.fillStyle = 'rgba(10, 10, 10, 0.06)';
+    ctx.fillRect(0, 0, w, h);
+
+    for (var i = 0; i < columns.length; i++) {
+      var y = columns[i] * FONT_SIZE;
+      if (y > -FONT_SIZE && y < h) {
+        var ch = CHARS.charAt((Math.random() * CHARS.length) | 0);
+        var isHead = Math.random() > 0.92;
+        ctx.fillStyle = isHead ? 'rgba(255, 196, 49, 0.55)' : 'rgba(255, 196, 49, 0.22)';
+        ctx.fillText(ch, i * FONT_SIZE, y);
+      }
+      columns[i]++;
+      if (y > h && Math.random() > 0.975) {
+        columns[i] = -((Math.random() * 20) | 0);
+      }
+    }
+
+    raf = requestAnimationFrame(step);
+  }
+
+  function start() { if (!raf) raf = requestAnimationFrame(step); }
+  function stop() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+  resize();
+  var resizeTimer = 0;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 120);
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+    }).observe(canvas);
+  } else {
+    start();
+  }
+})();
+
 (function () {
   'use strict';
 
